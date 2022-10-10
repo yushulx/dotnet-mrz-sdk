@@ -46,5 +46,15 @@
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
+    <None Update="MRZ.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Update="model/**/*.*">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
   </ItemGroup>
 </Project>
