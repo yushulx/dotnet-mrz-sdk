@@ -288,7 +288,8 @@ public class MrzScanner
 
             File.WriteAllText(config, contents);
         }
-        else {
+        else
+        {
             return 0;
         }
 
@@ -316,24 +317,23 @@ public class MrzScanner
         if (handler == IntPtr.Zero) return null;
 
         IntPtr pResultArray = IntPtr.Zero;
-        return null;
 
-        //         ImageData imageData = new ImageData();
-        //         imageData.width = width;
-        //         imageData.height = height;
-        //         imageData.stride = stride;
-        //         imageData.format = format;
-        //         imageData.bytesLength = stride * height;
-        //         imageData.bytes = pBufferBytes;
+        ImageData imageData = new ImageData();
+        imageData.width = width;
+        imageData.height = height;
+        imageData.stride = stride;
+        imageData.format = format;
+        imageData.bytesLength = stride * height;
+        imageData.bytes = pBufferBytes;
 
-        //         IntPtr pimageData = Marshal.AllocHGlobal(Marshal.SizeOf(imageData));
-        //         Marshal.StructureToPtr(imageData, pimageData, false);
-        //         int ret = DLR_RecognizeByBuffer(handler, pimageData, "", ref pResultArray);
-        //         Marshal.FreeHGlobal(pimageData);
-        // #if DEBUG
-        //         Console.WriteLine("DetectBuffer(): " + ret);
-        // #endif
-        //         return GetResults(pResultArray);
+        IntPtr pimageData = Marshal.AllocHGlobal(Marshal.SizeOf(imageData));
+        Marshal.StructureToPtr(imageData, pimageData, false);
+        int ret = DLR_RecognizeByBuffer(handler, pimageData, "locr");
+        Marshal.FreeHGlobal(pimageData);
+#if DEBUG
+        Console.WriteLine("DetectBuffer(): " + ret);
+#endif
+        return GetResults();
     }
 
     private Result[]? GetResults()
@@ -343,36 +343,42 @@ public class MrzScanner
 
         if (pDLR_ResultArray != IntPtr.Zero)
         {
-            Result[]? resultArray = null;
+            List<Result> resultArray = new List<Result>();
             DLR_ResultArray? results = (DLR_ResultArray?)Marshal.PtrToStructure(pDLR_ResultArray, typeof(DLR_ResultArray));
             if (results != null)
             {
                 int count = results.Value.resultsCount;
-#if DEBUG
-                Console.WriteLine("Detected MRZ results: " + count);
-#endif
+
                 if (count > 0)
                 {
                     IntPtr[] mrzResults = new IntPtr[count];
                     Marshal.Copy(results.Value.results, mrzResults, 0, count);
-                    resultArray = new Result[count];
+
 
                     for (int i = 0; i < count; i++)
                     {
-                        // PTextResult? result = (PTextResult?)Marshal.PtrToStructure(mrzResults[i], typeof(PTextResult));
-                        // if (result != null)
-                        // {
-                        //     Result r = new Result();
-                        //     resultArray[i] = r;
-                        //     r.Text = result.Value.barcodeText;
-                        //     r.Format1 = result.Value.barcodeFormatString;
-                        //     r.Format2 = result.Value.barcodeFormatString_2;
-                        //     LocalizationResult? localizationResult = (LocalizationResult?)Marshal.PtrToStructure(result.Value.localizationResult, typeof(LocalizationResult));
-                        //     if (localizationResult != null)
-                        //     {
-                        //         r.Points = new int[8] { localizationResult.Value.x1, localizationResult.Value.y1, localizationResult.Value.x2, localizationResult.Value.y2, localizationResult.Value.x3, localizationResult.Value.y3, localizationResult.Value.x4, localizationResult.Value.y4 };
-                        //     }
-                        // }
+                        DLR_Result result = (DLR_Result)Marshal.PtrToStructure(mrzResults[i], typeof(DLR_Result))!;
+                        int lineResultsCount = result.lineResultsCount;
+                        IntPtr lineResults = result.lineResults;
+                        IntPtr[] lines = new IntPtr[lineResultsCount];
+                        Marshal.Copy(lineResults, lines, 0, lineResultsCount);
+
+                        for (int j = 0; j < lineResultsCount; j++)
+                        {
+                            Result mrzResult = new Result();
+                            DLR_LineResult lineResult = (DLR_LineResult)Marshal.PtrToStructure(lines[j], typeof(DLR_LineResult))!;
+                            mrzResult.Text = lineResult.text;
+                            mrzResult.Confidence = lineResult.confidence;
+                            DM_Point[] points = lineResult.location.points;
+                            mrzResult.Points = new int[8];
+                            for (int k = 0; k < 4; k++)
+                            {
+                                mrzResult.Points[k * 2] = points[k].coordinate[0];
+                                mrzResult.Points[k * 2 + 1] = points[k].coordinate[1];
+                            }
+
+                            resultArray.Add(mrzResult);
+                        }
                     }
                 }
             }
@@ -380,7 +386,7 @@ public class MrzScanner
             // Release memory of barcode results
             DLR_FreeResults(ref pDLR_ResultArray);
 
-            return resultArray;
+            return resultArray.ToArray();
         }
 
         return null;

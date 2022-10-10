@@ -14,30 +14,17 @@ namespace Test
             MrzScanner scanner = MrzScanner.Create();
             int ret = scanner.LoadModel();
             Console.WriteLine("LoadModel: " + ret);
-            
-            // scanner.SetParameters(MrzScanner.Templates.color);
-            // MrzScanner.Result[]? resultArray = scanner.DetectFile("1.png");
-            // if (resultArray != null)
-            // {
-            //     foreach (MrzScanner.Result result in resultArray)
-            //     {
-            //         Console.WriteLine("Confidence: " + result.Confidence);
-            //         if (result.Points != null)
-            //         {
-            //             foreach (int point in result.Points)
-            //             {
-            //                 Console.WriteLine("Point: " + point);
-            //             }
 
-            //             MrzScanner.NormalizedImage image = scanner.NormalizeFile("1.png", result.Points);
-            //             if (image != null)
-            //             {
-            //                 image.Save(DateTime.Now.ToFileTimeUtc() + ".png");
-            //             }
-            //         }
+            MrzScanner.Result[]? results = scanner.DetectFile("1.png");
+            if (results != null)
+            {
+                foreach (MrzScanner.Result result in results)
+                {
+                    Console.WriteLine(result.Text);
+                    Console.WriteLine(result.Points[0] + ", " +result.Points[1] + ", " + result.Points[2] + ", " + result.Points[3] + ", " + result.Points[4] + ", " + result.Points[5] + ", " + result.Points[6] + ", " + result.Points[7]);
+                }
+            }
 
-            //     }
-            // }
         }
     }
 }
