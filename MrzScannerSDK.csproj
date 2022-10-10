@@ -1,9 +1,50 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+    <PackageId>MrzScannerSDK</PackageId>
+    <Version>1.0.0</Version>
+    <Authors>yushulx</Authors>
+    <Company>Dynamsoft</Company>
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Description>The MRZ Scanner SDK is a .NET wrapper for Dynamsoft C++ Label Recognizer, supporting x64 Windows and x64 Linux.</Description>
+    <PackageProjectUrl>https://github.com/yushulx/dotnet-mrz-sdk</PackageProjectUrl>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <RepositoryUrl>https://github.com/yushulx/dotnet-mrz-sdk</RepositoryUrl>
+    <PackageTags>MRZ;mrz-scan;machine-readable-zone;mrz-detection;passport;visa;id-card;travel-document</PackageTags>
+    <PackageReleaseNotes>
+    </PackageReleaseNotes>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
   </PropertyGroup>
 
+  <PropertyGroup Condition=" '$(OS)' == 'Windows_NT' ">
+    <DefineConstants>_WINDOWS</DefineConstants>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="example\**" />
+    <None Include="LICENSE" Pack="true" PackagePath=""/>
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All"/>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None CopyToOutputDirectory="Always" Link="\%(Filename)%(Extension)" Include="lib/win/DynamicPdfx64.dll" Pack="true" PackagePath="runtimes/win-x64/native/DynamicPdfx64.dll" />
+    <None CopyToOutputDirectory="Always" Link="\%(Filename)%(Extension)" Include="lib/win/DynamsoftLabelRecognizerx64.dll" Pack="true" PackagePath="runtimes/win-x64/native/DynamsoftLabelRecognizerx64.dll"  />
+    <None CopyToOutputDirectory="Always" Link="\%(Filename)%(Extension)" Include="lib/win/DynamsoftLicenseClientx64.dll" Pack="true" PackagePath="runtimes/win-x64/native/DynamsoftLicenseClientx64.dll" />
+    <None CopyToOutputDirectory="Always" Link="\%(Filename)%(Extension)" Include="lib/win/vcomp140.dll" Pack="true" PackagePath="runtimes/win-x64/native/vcomp140.dll" />
+
+    <None CopyToOutputDirectory="Always" Link="\%(Filename)%(Extension)" Include="lib/linux/libDynamicPdf.so" Pack="true" PackagePath="runtimes/linux-x64/native/libDynamicPdf.so" />
+    <None CopyToOutputDirectory="Always" Link="\%(Filename)%(Extension)" Include="lib/linux/libDynamsoftLabelRecognizer.so" Pack="true" PackagePath="runtimes/linux-x64/native/libDynamsoftLabelRecognizer.so" />
+    <None CopyToOutputDirectory="Always" Link="\%(Filename)%(Extension)" Include="lib/linux/libDynamsoftLicenseClient.so" Pack="true" PackagePath="runtimes/linux-x64/native/libDynamsoftLicenseClient.so" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
 </Project>
