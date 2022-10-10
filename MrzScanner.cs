@@ -66,7 +66,7 @@ public class MrzScanner
     [DllImport("DynamsoftLabelRecognizer")]
     static extern int DLR_FreeResults(ref IntPtr pDLR_ResultArray);
 
-    [DllImport("DynamsoftLabelRecognizerx64")]
+    [DllImport("DynamsoftLabelRecognizer")]
     static extern int DLR_GetAllResults(IntPtr hBarcode, ref IntPtr pDLR_ResultArray);
 
     [DllImport("DynamsoftLabelRecognizer")]
