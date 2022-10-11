@@ -27,12 +27,24 @@ namespace Test
             FormClosing += new FormClosingEventHandler(Form1_Closing);
             string license = "DLS2eyJoYW5kc2hha2VDb2RlIjoiMjAwMDAxLTE2NDk4Mjk3OTI2MzUiLCJvcmdhbml6YXRpb25JRCI6IjIwMDAwMSIsInNlc3Npb25QYXNzd29yZCI6IndTcGR6Vm05WDJrcEQ5YUoifQ==";
 
-            int ret = MrzScanner.InitLicense(license); // Get a license key from https://www.dynamsoft.com/customer/license/trialLicense?product=ddn
-            if (ret != 0) MessageBox.Show("License is invalid!");
+            ActivateLicense(license);
+
             scanner = MrzScanner.Create();
             capture = new VideoCapture(0);
             isCapturing = false;
             scanner.LoadModel();
+        }
+        
+        private void ActivateLicense(string license)
+        {
+            int ret = MrzScanner.InitLicense(license); // Get a license key from https://www.dynamsoft.com/customer/license/trialLicense?product=dlr
+            if (ret != 0) 
+            {
+                toolStripStatusLabel1.Text = "License is invalid.";
+            }
+            else {
+                toolStripStatusLabel1.Text = "License is activated successfully.";
+            }
         }
 
         protected override void OnFormClosing(FormClosingEventArgs e)
@@ -157,7 +169,7 @@ namespace Test
             string license = InputBox("Enter License Key", "", "");
             if (license != null && license != "")
             {
-                int ret = MrzScanner.InitLicense(license);
+                ActivateLicense(license);
             }
         }
 
