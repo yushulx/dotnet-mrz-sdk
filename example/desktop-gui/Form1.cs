@@ -89,6 +89,22 @@ namespace Test
             return bitmap;
         }
 
+        private void MrzDetection(string filename)
+        {
+            try
+            {
+                _mat = Cv2.ImRead(filename, ImreadModes.Color);
+                Mat copy = new Mat(_mat.Rows, _mat.Cols, MatType.CV_8UC3);
+                _mat.CopyTo(copy);
+                pictureBox1.Image = BitmapConverter.ToBitmap(copy);
+                pictureBox2.Image = DecodeMat(copy);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+        
         private void button1_Click(object sender, EventArgs e)
         {
             StopScan();
@@ -99,18 +115,8 @@ namespace Test
 
                 if (dlg.ShowDialog() == DialogResult.OK)
                 {
-                    try
-                    {
-                        _mat = Cv2.ImRead(dlg.FileName, ImreadModes.Color);
-                        Mat copy = new Mat(_mat.Rows, _mat.Cols, MatType.CV_8UC3);
-                        _mat.CopyTo(copy);
-                        pictureBox1.Image = BitmapConverter.ToBitmap(copy);
-                        pictureBox2.Image = DecodeMat(copy);
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.Message);
-                    }
+                    listBox1.Items.Add(dlg.FileName);
+                    MrzDetection(dlg.FileName);
                 }
             }
         }
@@ -203,6 +209,27 @@ namespace Test
 
             DialogResult dialogResult = form.ShowDialog();
             return textBox.Text;
+        }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string? filename = listBox1.SelectedItem.ToString();
+            if (filename != null)
+            {
+                MrzDetection(filename);
+            }
+        }
+
+        private void listBox1_DragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop)) e.Effect = DragDropEffects.Copy;
+        }
+
+        private void listBox1_DragDrop(object sender, DragEventArgs e)
+        {
+            string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
+            foreach (string file in files)
+                listBox1.Items.Add(file);
         }
     }
 }
