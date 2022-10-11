@@ -4,6 +4,7 @@ using System.Text;
 using System.Runtime.InteropServices;
 using System.Text.Json;
 using System.Text.Json.Nodes;
+using System.Text.RegularExpressions;
 
 public class MrzScanner
 {
@@ -229,6 +230,164 @@ public class MrzScanner
     ~MrzScanner()
     {
         Destroy();
+    }
+
+    public static JsonNode? Parse(string[] lines)
+    {
+        JsonNode mrzInfo = new JsonObject();
+
+        if (lines.Length == 0)
+        {
+            return null;
+        }
+
+        if (lines.Length == 2)
+        {
+            string line1 = lines[0];
+            string line2 = lines[1];
+
+            var type = line1.Substring(0, 1);
+            if (!new Regex(@"[I|P|V]").IsMatch(type)) return null;
+            if (type == "P")
+            {
+                mrzInfo["type"] = "PASSPORT (TD-3)";
+            }
+            else if (type == "V")
+            {
+                if (line1.Length == 44)
+                {
+                    mrzInfo["type"] = "VISA (MRV-A)";
+                }
+                else if (line1.Length == 36)
+                {
+                    mrzInfo["type"] = "VISA (MRV-B)";
+                }
+            }
+            else if (type == "I")
+            {
+                mrzInfo["type"] = "ID CARD (TD-2)";
+            }
+
+            // Get issuing State infomation
+            var nation = line1.Substring(2, 5);
+            if (new Regex(@"[0-9]").IsMatch(nation)) return null;
+            if (nation[nation.Length - 1] == '<') {
+                nation = nation.Substring(0, 2);
+            }
+            mrzInfo["nationality"] = nation;
+            // Get surname information
+            line1 = line1.Substring(5);
+            var pos = line1.IndexOf("<<");
+            var surName = line1.Substring(0, pos);
+            if (new Regex(@"[0-9]").IsMatch(surName)) return null;
+            surName = surName.Replace("<", " ");
+            mrzInfo["surname"] = surName;
+            // Get givenname information
+            var givenName = line1.Substring(surName.Length + 2);
+            if (new Regex(@"[0-9]").IsMatch(givenName)) return null;
+            givenName = givenName.Replace("<", " ");
+            givenName = givenName.Trim();
+            mrzInfo["givenname"] = givenName;
+            // Get passport number information
+            var passportNumber = "";
+            passportNumber = line2.Substring(0, 9);
+            passportNumber = passportNumber.Replace("<", " ");
+            mrzInfo["passportnumber"] = passportNumber;
+            // Get Nationality information
+            var issueCountry = line2.Substring(10, 3);
+            if (new Regex(@"[0-9]").IsMatch(issueCountry)) return null;
+            if (issueCountry[issueCountry.Length - 1] == '<') {
+                issueCountry = issueCountry.Substring(0, 2);
+            }
+            mrzInfo["issuecountry"] = issueCountry;
+            // Get date of birth information
+            var birth = line2.Substring(13, 6);
+            var date = new DateTime();
+            var currentYear = date.Year;
+            if (Int32.Parse(birth.Substring(0, 2)) > (currentYear % 100)) {
+                birth = "19" + birth;
+            } else {
+                birth = "20" + birth;
+            }
+            birth = birth.Substring(0, 4) + "-" + birth.Substring(4, 2) + "-" + birth.Substring(6, 2);
+            if (new Regex(@"[A-Za-z]").IsMatch(birth)) return null;
+            mrzInfo["birth"] = birth;
+            // Get gender information
+            var gender = line2[20] + "";
+            if (!(new Regex(@"[M|F|x|<]").IsMatch(gender))) return null;
+            mrzInfo["gender"] = gender;
+            // Get date of expiry information
+            var expiry = line2.Substring(21, 6);
+            if (new Regex(@"[A-Za-z]").IsMatch(expiry)) return null;
+            if (Int32.Parse(expiry.Substring(0, 2)) >= 60) {
+                expiry = "19" + expiry;
+            } else {
+                expiry = "20" + expiry;
+            }
+            expiry = expiry.Substring(0, 4) + "-" + expiry.Substring(4, 2) + "-" + expiry.Substring(6);
+            mrzInfo["expiry"] = expiry;
+        }
+        else if (lines.Length == 3)
+        {
+            string line1 = lines[0];
+            string line2 = lines[1];
+            string line3 = lines[2];
+            var type = line1.Substring(0, 1);
+            if (!new Regex(@"[I|P|V]").IsMatch(type)) return null;
+            mrzInfo["type"] = "ID CARD (TD-1)";
+            // Get nationality infomation
+            var nation = line2.Substring(15, 3);
+            if (new Regex(@"[0-9]").IsMatch(nation)) return null;
+            nation = nation.Replace("<", "");
+            mrzInfo["nationality"] = nation;
+            // Get surname information
+            var pos = line3.IndexOf("<<");
+            var surName = line3.Substring(0, pos);
+            if (new Regex(@"[0-9]").IsMatch(surName)) return null;
+            surName = surName.Replace("<", " ");
+            surName.Trim();
+            mrzInfo["surname"] = surName;
+            // Get givenname information
+            var givenName = line3.Substring(surName.Length + 2);
+            if (new Regex(@"[0-9]").IsMatch(givenName)) return null;
+            givenName = givenName.Replace("<", " ");
+            givenName = givenName.Trim();
+            mrzInfo["givenname"] = givenName;
+            // Get passport number information
+            var passportNumber = "";
+            passportNumber = line1.Substring(5, 9);
+            passportNumber = passportNumber.Replace("<", " ");
+            mrzInfo["passportnumber"] = passportNumber;
+            // Get issuing country or organization information
+            var issueCountry = line1.Substring(2, 3);
+            if (new Regex(@"[0-9]").IsMatch(issueCountry)) return null;
+            issueCountry = issueCountry.Replace("<", "");
+            mrzInfo["issuecountry"] = issueCountry;
+            // Get date of birth information
+            var birth = line2.Substring(0, 6);
+            if (new Regex(@"[A-Za-z]").IsMatch(birth)) return null;
+            var date = new DateTime();
+            var currentYear = date.Year;
+            if (Int32.Parse(birth.Substring(0, 2)) > (currentYear % 100)) {
+                birth = "19" + birth;
+            } else {
+                birth = "20" + birth;
+            }
+            birth = birth.Substring(0, 4) + "-" + birth.Substring(4, 2) + "-" + birth.Substring(6);
+            mrzInfo["birth"] = birth;
+            // Get gender information
+            var gender = line2[7] + "";
+            if (!(new Regex(@"[M|F|X|<]").IsMatch(gender))) return null;
+            gender = gender.Replace("<", "X");
+            mrzInfo["gender"] = gender;
+            // Get date of expiry information
+            var expiry = "20" + line2.Substring(8, 6);
+            if (new Regex(@"[A-Za-z]").IsMatch(expiry)) return null;
+            expiry = expiry.Substring(0, 4) + "-" + expiry.Substring(4, 2) + "-" + expiry.Substring(6);
+            mrzInfo["expiry"] = expiry;
+        }
+
+        return mrzInfo;
     }
 
     public static string? GetVersionInfo()
