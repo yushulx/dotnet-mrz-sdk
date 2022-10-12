@@ -447,10 +447,6 @@ public class MrzScanner
 
             File.WriteAllText(config, contents);
         }
-        else
-        {
-            return 0;
-        }
 
         byte[] errorMsg = new byte[512];
         int ret = DLR_AppendSettingsFromFile(handler, config, errorMsg, 512);
