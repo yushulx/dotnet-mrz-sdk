@@ -16,7 +16,7 @@ public class MrzScanner
 
         public Result()
         {
-            Points = new int[4];
+            Points = new int[8];
             Text = "";
         }
     }
