@@ -54,6 +54,18 @@ Click [here](https://www.dynamsoft.com/customer/license/trialLicense?product=dlr
     ```csharp
     scanner.LoadModel();
     ```
+- Parse the MRZ information:
+
+    ```csharp
+    string[] lines = new string[_results.Length];
+    var index = 0;
+    foreach (Result result in _results)
+    {
+        lines[index++] = result.Text;
+    }
+
+    JsonNode? info = Parse(lines);
+    ```
 
 ## Quick Start
 
