@@ -21,6 +21,7 @@ public class MrzScanner
         }
     }
 
+    public static string VERSION = "1.0.1";
     private IntPtr handler;
     private static string? licenseKey;
 
@@ -428,7 +429,7 @@ public class MrzScanner
     {
         if (handler == IntPtr.Zero) return -1;
 
-        string dir = Directory.GetCurrentDirectory();
+        string dir = Path.Join(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), ".nuget/packages/mrzscannersdk", VERSION);
         string[] files = Directory.GetDirectories(dir, "model", SearchOption.AllDirectories);
         string modelPath = files[0];
         string config = Path.Join(modelPath.Split("model")[0], "MRZ.json");

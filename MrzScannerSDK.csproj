@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <PackageId>MrzScannerSDK</PackageId>
-    <Version>1.0.0</Version>
+    <Version>1.0.1</Version>
     <Authors>yushulx</Authors>
     <Company>Dynamsoft</Company>
     <TargetFramework>net6.0</TargetFramework>
@@ -15,6 +15,7 @@
     <RepositoryUrl>https://github.com/yushulx/dotnet-mrz-sdk</RepositoryUrl>
     <PackageTags>MRZ;mrz-scan;machine-readable-zone;mrz-detection;passport;visa;id-card;travel-document</PackageTags>
     <PackageReleaseNotes>
+      - Fixed model loading path.
     </PackageReleaseNotes>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
