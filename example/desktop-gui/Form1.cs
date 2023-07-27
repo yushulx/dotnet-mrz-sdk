@@ -9,6 +9,7 @@ using System.Text.Json.Nodes;
 using System;
 using System.Windows.Forms;
 using System.Drawing;
+using System.Runtime.InteropServices;
 
 namespace Test
 {
@@ -61,7 +62,10 @@ namespace Test
         }
         private Bitmap DecodeMat(Mat mat)
         {
-            _results = scanner.DetectBuffer(mat.Data, mat.Cols, mat.Rows, (int)mat.Step(), MrzScanner.ImagePixelFormat.IPF_RGB_888);
+            int length = mat.Cols * mat.Rows * mat.ElemSize();
+            byte[] bytes = new byte[length];
+            Marshal.Copy(mat.Data, bytes, 0, length);
+            _results = scanner.DetectBuffer(bytes, mat.Cols, mat.Rows, (int)mat.Step(), MrzScanner.ImagePixelFormat.IPF_RGB_888);
             if (_results != null)
             {
                 string[] lines = new string[_results.Length];

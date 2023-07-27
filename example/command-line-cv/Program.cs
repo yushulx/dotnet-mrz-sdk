@@ -20,8 +20,12 @@ namespace Test
             Mat mat = Cv2.ImRead("1.jpg", ImreadModes.Color);
             Mat copy = new Mat(mat.Rows, mat.Cols, MatType.CV_8UC3);
             mat.CopyTo(copy);
+
+            int length = copy.Cols * copy.Rows * copy.ElemSize();
+            byte[] bytes = new byte[length];
+            Marshal.Copy(copy.Data, bytes, 0, length);
             
-            MrzScanner.Result[]? resultArray = scanner.DetectBuffer(copy.Data, copy.Cols, copy.Rows, (int)copy.Step(), MrzScanner.ImagePixelFormat.IPF_RGB_888);
+            MrzScanner.Result[]? resultArray = scanner.DetectBuffer(bytes, copy.Cols, copy.Rows, (int)copy.Step(), MrzScanner.ImagePixelFormat.IPF_RGB_888);
             if (resultArray != null)
             {
                 foreach (MrzScanner.Result result in resultArray)

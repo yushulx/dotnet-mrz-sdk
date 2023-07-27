@@ -1,5 +1,5 @@
 # .NET MRZ Scanner SDK
-The .NET MRZ Scanner SDK is a C# wrapper for [Dynamsoft C++ Label Recognizer SDK](https://www.dynamsoft.com/label-recognition/docs/introduction/?ver=latest). It is used to recognize MRZ information for passport, Visa, ID card and travel documents.
+The .NET MRZ Scanner SDK is a C# wrapper for [Dynamsoft C++ Label Recognizer SDK](https://www.dynamsoft.com/label-recognition/docs/introduction/?ver=latest). It is used to recognize MRZ information from passport, Visa, ID card and travel documents.
 
 
 ## License Activation
@@ -17,7 +17,7 @@ Click [here](https://www.dynamsoft.com/customer/license/trialLicense?product=dlr
 - `public static void InitLicense(string license)`
 - `public static MrzScanner Create()`
 - `public Result[]? DetectFile(string filename)`
-- `public Result[]? DetectBuffer(IntPtr pBufferBytes, int width, int height, int stride, ImagePixelFormat format)`
+- `public Result[]? DetectBuffer(byte[] buffer, int width, int height, int stride, ImagePixelFormat format)`
 - `public static string? GetVersionInfo()`
 - `public int LoadModel()`
 
@@ -42,7 +42,12 @@ Click [here](https://www.dynamsoft.com/customer/license/trialLicense?product=dlr
     
     ```csharp
     Mat mat = Cv2.ImRead(filename, ImreadModes.Color);
-    Result[]? resultArray = scanner.DetectBuffer(copy.Data, copy.Cols, copy.Rows, (int)copy.Step(), MrzScanner.ImagePixelFormat.IPF_RGB_888);
+
+    int length = mat.Cols * mat.Rows * mat.ElemSize();
+    byte[] bytes = new byte[length];
+    Marshal.Copy(mat.Data, bytes, 0, length);
+
+    Result[]? resultArray = scanner.DetectBuffer(bytes, mat.Cols, mat.Rows, (int)mat.Step(), MrzScanner.ImagePixelFormat.IPF_RGB_888);
     ```     
 - Get SDK version number:
 

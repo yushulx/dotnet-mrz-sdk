@@ -51,6 +51,9 @@ public class MrzScanner
 
     [DllImport("DynamsoftLabelRecognizerx64")]
     static extern int DLR_AppendSettingsFromFile(IntPtr handler, string filename, [Out] byte[] errorMsg, int errorMsgSize);
+
+    [DllImport("DynamsoftLabelRecognizerx64")]
+    static extern int DLR_AppendSettingsFromString(IntPtr handler, string content, [Out] byte[] errorMsg, int errorMsgSize);
 #else
     [DllImport("DynamsoftLabelRecognizer")]
     static extern int DLR_InitLicense(string license, [Out] byte[] errorMsg, int errorMsgSize);
@@ -78,6 +81,9 @@ public class MrzScanner
 
     [DllImport("DynamsoftLabelRecognizer")]
     static extern int DLR_AppendSettingsFromFile(IntPtr handler, string filename, [Out] byte[] errorMsg, int errorMsgSize);
+
+    [DllImport("DynamsoftLabelRecognizer")]
+    static extern int DLR_AppendSettingsFromString(IntPtr handler, string content, [Out] byte[] errorMsg, int errorMsgSize);
 #endif
 
     [StructLayout(LayoutKind.Sequential, Pack = 1)]
@@ -445,11 +451,11 @@ public class MrzScanner
 
             contents = configNode.ToJsonString(options);
 
-            File.WriteAllText(config, contents);
+            // File.WriteAllText(config, contents);
         }
 
         byte[] errorMsg = new byte[512];
-        int ret = DLR_AppendSettingsFromFile(handler, config, errorMsg, 512);
+        int ret = DLR_AppendSettingsFromString(handler, contents, errorMsg, 512);
 #if DEBUG
         Console.WriteLine("LoadModel(): " + Encoding.ASCII.GetString(errorMsg));
 #endif
@@ -467,9 +473,13 @@ public class MrzScanner
         return GetResults();
     }
 
-    public Result[]? DetectBuffer(IntPtr pBufferBytes, int width, int height, int stride, ImagePixelFormat format)
+    public Result[]? DetectBuffer(byte[] buffer, int width, int height, int stride, ImagePixelFormat format)
     {
         if (handler == IntPtr.Zero) return null;
+
+        int length = buffer.Length;
+        IntPtr pBufferBytes = Marshal.AllocHGlobal(length);
+        Marshal.Copy(buffer, 0, pBufferBytes, length);
 
         IntPtr pResultArray = IntPtr.Zero;
 
@@ -488,6 +498,8 @@ public class MrzScanner
 #if DEBUG
         Console.WriteLine("DetectBuffer(): " + ret);
 #endif
+
+        Marshal.FreeHGlobal(pBufferBytes);
         return GetResults();
     }
 
