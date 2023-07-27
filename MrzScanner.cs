@@ -21,7 +21,7 @@ public class MrzScanner
         }
     }
 
-    public static string VERSION = "1.0.1";
+    public static string VERSION = "1.1.0";
     private IntPtr handler;
     private static string? licenseKey;
 
