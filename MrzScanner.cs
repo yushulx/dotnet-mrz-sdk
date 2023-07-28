@@ -431,14 +431,19 @@ public class MrzScanner
         return ret;
     }
 
-    public int LoadModel()
+    public int LoadModel(string path = "")
     {
         if (handler == IntPtr.Zero) return -1;
 
         string dir = Path.Join(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), ".nuget/packages/mrzscannersdk", VERSION);
         string[] files = Directory.GetDirectories(dir, "model", SearchOption.AllDirectories);
-        string modelPath = files[0];
-        string config = Path.Join(modelPath.Split("model")[0], "MRZ.json");
+        string modelPath = path == "" ? files[0] : path;
+        string config = Path.Join(modelPath, "MRZ.json");
+
+        if (!File.Exists(config)) 
+        {
+            throw new Exception("Cannot find model config file.");
+        }
 
         string contents = File.ReadAllText(config);
 

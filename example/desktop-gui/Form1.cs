@@ -24,6 +24,14 @@ namespace Test
 
         public Form1()
         {
+            string? assemblyPath = System.IO.Path.GetDirectoryName(
+                System.Reflection.Assembly.GetExecutingAssembly().Location
+            );
+
+            if (assemblyPath == null) {
+                return;
+            }
+
             InitializeComponent();
             FormClosing += new FormClosingEventHandler(Form1_Closing);
             string license = "DLS2eyJoYW5kc2hha2VDb2RlIjoiMjAwMDAxLTE2NDk4Mjk3OTI2MzUiLCJvcmdhbml6YXRpb25JRCI6IjIwMDAwMSIsInNlc3Npb25QYXNzd29yZCI6IndTcGR6Vm05WDJrcEQ5YUoifQ==";
@@ -33,7 +41,7 @@ namespace Test
             scanner = MrzScanner.Create();
             capture = new VideoCapture(0);
             isCapturing = false;
-            scanner.LoadModel();
+            scanner.LoadModel(Path.Join(assemblyPath, "model"));
         }
         
         private void ActivateLicense(string license)
