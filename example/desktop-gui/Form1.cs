@@ -93,7 +93,8 @@ namespace Test
                     }
                 }
 
-                JsonNode? info = Parse(lines);
+                MrzResult info = MrzParser.Parse(lines);
+            //    JsonNode? info = Parse(lines);
                 if (info != null) richTextBox1.Text = info.ToString();
             }
 

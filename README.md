@@ -69,7 +69,7 @@ Click [here](https://www.dynamsoft.com/customer/license/trialLicense?product=dlr
         lines[index++] = result.Text;
     }
 
-    JsonNode? info = Parse(lines);
+    MrzResult info = MrzParser.Parse(lines);
     ```
 
 ## Quick Start
