@@ -93,7 +93,7 @@ public static class MrzParser
         mrzInfo.BirthDate = ExtractDate(line2, 13);
         mrzInfo.Gender = GenderRegex.IsMatch(line2[20].ToString()) ? line2[20].ToString().Replace('<', 'X') : "N/A";
         mrzInfo.Expiration = ExtracExpiration(line2, 21);
-
+        mrzInfo.Lines = $"{line1}\n{line2}";
         return mrzInfo;
     }
 
@@ -112,7 +112,7 @@ public static class MrzParser
         mrzInfo.BirthDate = ExtractDate(line2, 0);
         mrzInfo.Gender = GenderRegex.IsMatch(line2[7].ToString()) ? line2[7].ToString().Replace('<', 'X') : "N/A";
         mrzInfo.Expiration = ExtracExpiration(line2, 8);
-
+        mrzInfo.Lines = $"{line1}\n{line2}\n{line3}";
         return mrzInfo;
     }
 }

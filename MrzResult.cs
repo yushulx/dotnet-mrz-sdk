@@ -18,15 +18,15 @@ public class MrzResult
 
     // Constructor
     public MrzResult(
-        string type = "N/A", 
-        string nationality = "N/A", 
-        string surname = "N/A", 
-        string givenName = "N/A", 
-        string passportNumber = "N/A", 
-        string issuingCountry = "N/A", 
-        string birthDate = "N/A", 
-        string gender = "N/A", 
-        string expiration = "N/A", 
+        string type = "N/A",
+        string nationality = "N/A",
+        string surname = "N/A",
+        string givenName = "N/A",
+        string passportNumber = "N/A",
+        string issuingCountry = "N/A",
+        string birthDate = "N/A",
+        string gender = "N/A",
+        string expiration = "N/A",
         string lines = "N/A")
     {
         Type = type;
@@ -54,11 +54,11 @@ public class MrzResult
                $"Issue Country: {IssuingCountry}\n\n" +
                $"Date of birth: {BirthDate}\n\n" +
                $"Gender: {Gender}\n\n" +
-               $"Expiration: {Expiration}\n\n";
+               $"Expiration: {Expiration}\n\n" + $"Lines: {Lines}\n\n";
     }
 
     // ToJson Method
-    public Dictionary<string, object> ToJson() 
+    public Dictionary<string, object> ToJson()
     {
         return new Dictionary<string, object>
         {
@@ -76,7 +76,7 @@ public class MrzResult
     }
 
     // FromJson Factory Method
-    public static MrzResult FromJson(Dictionary<string, string> json) 
+    public static MrzResult FromJson(Dictionary<string, string> json)
     {
         return new MrzResult(
             json.ContainsKey("type") ? json["type"].ToString() : "N/A",
