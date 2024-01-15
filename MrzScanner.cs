@@ -6,6 +6,10 @@ using System.Text.Json;
 using System.Text.Json.Nodes;
 using System.Text.RegularExpressions;
 
+using System;
+using System.IO;
+using System.Reflection;
+
 public class MrzScanner
 {
     public class Result
@@ -278,7 +282,8 @@ public class MrzScanner
             // Get issuing State infomation
             var nation = line1.Substring(2, 5);
             if (new Regex(@"[0-9]").IsMatch(nation)) return null;
-            if (nation[nation.Length - 1] == '<') {
+            if (nation[nation.Length - 1] == '<')
+            {
                 nation = nation.Substring(0, 2);
             }
             mrzInfo["nationality"] = nation;
@@ -303,7 +308,8 @@ public class MrzScanner
             // Get Nationality information
             var issueCountry = line2.Substring(10, 3);
             if (new Regex(@"[0-9]").IsMatch(issueCountry)) return null;
-            if (issueCountry[issueCountry.Length - 1] == '<') {
+            if (issueCountry[issueCountry.Length - 1] == '<')
+            {
                 issueCountry = issueCountry.Substring(0, 2);
             }
             mrzInfo["issuecountry"] = issueCountry;
@@ -311,9 +317,12 @@ public class MrzScanner
             var birth = line2.Substring(13, 6);
             var date = new DateTime();
             var currentYear = date.Year;
-            if (Int32.Parse(birth.Substring(0, 2)) > (currentYear % 100)) {
+            if (Int32.Parse(birth.Substring(0, 2)) > (currentYear % 100))
+            {
                 birth = "19" + birth;
-            } else {
+            }
+            else
+            {
                 birth = "20" + birth;
             }
             birth = birth.Substring(0, 4) + "-" + birth.Substring(4, 2) + "-" + birth.Substring(6, 2);
@@ -326,9 +335,12 @@ public class MrzScanner
             // Get date of expiry information
             var expiry = line2.Substring(21, 6);
             if (new Regex(@"[A-Za-z]").IsMatch(expiry)) return null;
-            if (Int32.Parse(expiry.Substring(0, 2)) >= 60) {
+            if (Int32.Parse(expiry.Substring(0, 2)) >= 60)
+            {
                 expiry = "19" + expiry;
-            } else {
+            }
+            else
+            {
                 expiry = "20" + expiry;
             }
             expiry = expiry.Substring(0, 4) + "-" + expiry.Substring(4, 2) + "-" + expiry.Substring(6);
@@ -375,9 +387,12 @@ public class MrzScanner
             if (new Regex(@"[A-Za-z]").IsMatch(birth)) return null;
             var date = new DateTime();
             var currentYear = date.Year;
-            if (Int32.Parse(birth.Substring(0, 2)) > (currentYear % 100)) {
+            if (Int32.Parse(birth.Substring(0, 2)) > (currentYear % 100))
+            {
                 birth = "19" + birth;
-            } else {
+            }
+            else
+            {
                 birth = "20" + birth;
             }
             birth = birth.Substring(0, 4) + "-" + birth.Substring(4, 2) + "-" + birth.Substring(6);
@@ -431,16 +446,44 @@ public class MrzScanner
         return ret;
     }
 
+    public static string ExtractModelsToDocuments()
+    {
+        // Determine the path of the executing assembly (your application)
+        string assemblyLocation = Assembly.GetExecutingAssembly().Location;
+        string? assemblyPath = Path.GetDirectoryName(assemblyLocation);
+        if (assemblyPath == null) throw new Exception("Cannot get assembly path.");
+
+        // Define the relative path to the model folder in the NuGet package
+        var modelFolderPath = Path.Combine(assemblyPath, "model");
+
+        // Define the target path in the Documents folder
+        var documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+        var targetFolderPath = Path.Combine(documentsPath, "MyModels");
+
+        // Create the target folder if it doesn't exist
+        Directory.CreateDirectory(targetFolderPath);
+
+        // Copy the model files
+        foreach (var filePath in Directory.GetFiles(modelFolderPath))
+        {
+            var fileName = Path.GetFileName(filePath);
+            var destFilePath = Path.Combine(targetFolderPath, fileName);
+            File.Copy(filePath, destFilePath, overwrite: true); // Set overwrite to true or false as needed
+        }
+
+        return targetFolderPath;
+    }
+
     public int LoadModel(string path = "")
     {
+
         if (handler == IntPtr.Zero) return -1;
 
-        string dir = Path.Join(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), ".nuget/packages/mrzscannersdk", VERSION);
-        string[] files = Directory.GetDirectories(dir, "model", SearchOption.AllDirectories);
-        string modelPath = path == "" ? files[0] : path;
+        string targetFolderPath = ExtractModelsToDocuments();
+        string modelPath = path == "" ? targetFolderPath : path;
         string config = Path.Join(modelPath, "MRZ.json");
 
-        if (!File.Exists(config)) 
+        if (!File.Exists(config))
         {
             throw new Exception("Cannot find model config file.");
         }

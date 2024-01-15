@@ -12,6 +12,7 @@ public static class MrzParser
 
     private static string ExtractAndClean(string source, int start, int length)
     {
+        if (length < 0) return source;
         return source.Substring(start, length).Replace('<', ' ').Trim();
     }
 

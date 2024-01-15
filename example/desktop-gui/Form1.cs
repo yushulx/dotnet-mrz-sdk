@@ -1,14 +1,8 @@
-﻿using System.Drawing.Imaging;
-using Dynamsoft;
+﻿using Dynamsoft;
 using Result = Dynamsoft.MrzScanner.Result;
 using OpenCvSharp;
 using OpenCvSharp.Extensions;
 using Point = OpenCvSharp.Point;
-using static Dynamsoft.MrzScanner;
-using System.Text.Json.Nodes;
-using System;
-using System.Windows.Forms;
-using System.Drawing;
 using System.Runtime.InteropServices;
 
 namespace Test
@@ -17,21 +11,13 @@ namespace Test
     {
         private MrzScanner scanner;
         private VideoCapture capture;
-        private bool isCapturing;
+        private volatile bool isCapturing;
         private Thread? thread;
         private Mat _mat = new Mat();
         private Result[]? _results;
 
         public Form1()
         {
-            string? assemblyPath = System.IO.Path.GetDirectoryName(
-                System.Reflection.Assembly.GetExecutingAssembly().Location
-            );
-
-            if (assemblyPath == null) {
-                return;
-            }
-
             InitializeComponent();
             FormClosing += new FormClosingEventHandler(Form1_Closing);
             string license = "DLS2eyJoYW5kc2hha2VDb2RlIjoiMjAwMDAxLTE2NDk4Mjk3OTI2MzUiLCJvcmdhbml6YXRpb25JRCI6IjIwMDAwMSIsInNlc3Npb25QYXNzd29yZCI6IndTcGR6Vm05WDJrcEQ5YUoifQ==";
@@ -41,17 +27,18 @@ namespace Test
             scanner = MrzScanner.Create();
             capture = new VideoCapture(0);
             isCapturing = false;
-            scanner.LoadModel(Path.Join(assemblyPath, "model"));
+            scanner.LoadModel();
         }
-        
+
         private void ActivateLicense(string license)
         {
             int ret = MrzScanner.InitLicense(license); // Get a license key from https://www.dynamsoft.com/customer/license/trialLicense?product=dlr
-            if (ret != 0) 
+            if (ret != 0)
             {
                 toolStripStatusLabel1.Text = "License is invalid.";
             }
-            else {
+            else
+            {
                 toolStripStatusLabel1.Text = "License is activated successfully.";
             }
         }
@@ -63,11 +50,6 @@ namespace Test
             scanner.Destroy();
         }
 
-        private void ShowResults(Result[] results)
-        {
-            if (results == null)
-                return;
-        }
         private Bitmap DecodeMat(Mat mat)
         {
             int length = mat.Cols * mat.Rows * mat.ElemSize();
@@ -81,7 +63,6 @@ namespace Test
                 foreach (Result result in _results)
                 {
                     lines[index++] = result.Text;
-                    richTextBox1.Text += result.Text + Environment.NewLine;
                     if (result.Points != null)
                     {
                         Point[] points = new Point[4];
@@ -94,8 +75,15 @@ namespace Test
                 }
 
                 MrzResult info = MrzParser.Parse(lines);
-            //    JsonNode? info = Parse(lines);
-                if (info != null) richTextBox1.Text = info.ToString();
+                if (info != null)
+                {
+                    this.Invoke(new MethodInvoker(delegate
+                    {
+                        // Update UI elements
+                        richTextBox1.Text = info.ToString();
+                    }));
+                }
+
             }
 
             Bitmap bitmap = BitmapConverter.ToBitmap(mat);
@@ -117,7 +105,7 @@ namespace Test
                 MessageBox.Show(ex.Message);
             }
         }
-        
+
         private void button1_Click(object sender, EventArgs e)
         {
             StopScan();
@@ -164,7 +152,6 @@ namespace Test
         {
             button2.Text = "Camera Scan";
             isCapturing = false;
-            if (thread != null) thread.Join();
         }
 
         private void FrameCallback()

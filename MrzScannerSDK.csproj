@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <PackageId>MrzScannerSDK</PackageId>
-    <Version>1.3.1</Version>
+    <Version>1.3.2</Version>
     <Authors>yushulx</Authors>
     <Company>Dynamsoft</Company>
     <TargetFramework>net6.0</TargetFramework>
@@ -17,7 +17,7 @@
     <PackageTags>
       MRZ;mrz-scan;machine-readable-zone;mrz-detection;passport;visa;id-card;travel-document</PackageTags>
     <PackageReleaseNotes>
-      - Fixed lines missing issue in MRZ result.
+      - Fixed model path issue.
     </PackageReleaseNotes>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>

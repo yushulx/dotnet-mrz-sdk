@@ -19,7 +19,7 @@ Click [here](https://www.dynamsoft.com/customer/license/trialLicense?product=dlr
 - `public Result[]? DetectFile(string filename)`
 - `public Result[]? DetectBuffer(byte[] buffer, int width, int height, int stride, ImagePixelFormat format)`
 - `public static string? GetVersionInfo()`
-- `public int LoadModel(string modelPath)`
+- `public int LoadModel()`
 
 ## Usage
 - Set the license key:
@@ -57,7 +57,7 @@ Click [here](https://www.dynamsoft.com/customer/license/trialLicense?product=dlr
 - Load the MRZ detection model. The model has been added to the NuGet package.
     
     ```csharp
-    scanner.LoadModel("path/to/model/folder");
+    scanner.LoadModel();
     ```
 - Parse the MRZ information:
 
@@ -85,18 +85,10 @@ namespace Test
     {
         static void Main(string[] args)
         {
-            string? assemblyPath = System.IO.Path.GetDirectoryName(
-                System.Reflection.Assembly.GetExecutingAssembly().Location
-            );
-
-            if (assemblyPath == null) {
-                return;
-            }
-
             MrzScanner.InitLicense("DLS2eyJoYW5kc2hha2VDb2RlIjoiMjAwMDAxLTE2NDk4Mjk3OTI2MzUiLCJvcmdhbml6YXRpb25JRCI6IjIwMDAwMSIsInNlc3Npb25QYXNzd29yZCI6IndTcGR6Vm05WDJrcEQ5YUoifQ=="); // Get a license key from https://www.dynamsoft.com/customer/license/trialLicense?product=dlr
             Console.WriteLine("Version: " + MrzScanner.GetVersionInfo());
             MrzScanner scanner = MrzScanner.Create();
-            int ret = scanner.LoadModel(Path.Join(assemblyPath, "model"));
+            int ret = scanner.LoadModel();
             Console.WriteLine("LoadModel: " + ret);
 
             MrzScanner.Result[]? results = scanner.DetectFile("1.png");
@@ -138,7 +130,7 @@ namespace Test
     dotnet run
     ```
     
-    ![.NET WinForms MRZ Scanner](https://camo.githubusercontent.com/b34f832e96c87a343abda0be70da3aaf2f709a8b0b9037744ed91a13bd0e7ade/68747470733a2f2f7777772e64796e616d736f66742e636f6d2f636f6465706f6f6c2f696d672f323032322f31302f646f746e65742d6d727a2d7363616e6e65722e706e67)
+    ![.NET WinForms MRZ Scanner](https://www.dynamsoft.com/codepool/img/2022/10/dotnet-mrz-scanner.png)
 
 ## Building NuGet Package from Source Code
 
