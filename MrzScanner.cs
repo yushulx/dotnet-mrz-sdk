@@ -479,7 +479,11 @@ public class MrzScanner
 
         if (handler == IntPtr.Zero) return -1;
 
-        string targetFolderPath = ExtractModelsToDocuments();
+        string assemblyLocation = Assembly.GetExecutingAssembly().Location;
+        string? assemblyPath = Path.GetDirectoryName(assemblyLocation);
+        if (assemblyPath == null) throw new Exception("Cannot get assembly path.");
+        var targetFolderPath = Path.Combine(assemblyPath, "model").ToString();
+
         string modelPath = path == "" ? targetFolderPath : path;
         string config = Path.Join(modelPath, "MRZ.json");
 

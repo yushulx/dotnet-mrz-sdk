@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <PackageId>MrzScannerSDK</PackageId>
-    <Version>1.3.2</Version>
+    <Version>1.3.3</Version>
     <Authors>yushulx</Authors>
     <Company>Dynamsoft</Company>
     <TargetFramework>net6.0</TargetFramework>
@@ -58,6 +58,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="MrzScannerSDK.targets" PackagePath="build/MrzScannerSDK.targets" />
     <None Update="README.md">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
