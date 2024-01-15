@@ -17,7 +17,7 @@
     <PackageTags>
       MRZ;mrz-scan;machine-readable-zone;mrz-detection;passport;visa;id-card;travel-document</PackageTags>
     <PackageReleaseNotes>
-      - Fixed model path issue.
+      - Fixed model issue for .NET MAUI.
     </PackageReleaseNotes>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
