@@ -130,7 +130,7 @@ namespace Test
     dotnet run
     ```
     
-    ![.NET WinForms MRZ Scanner](https://www.dynamsoft.com/codepool/img/2022/10/dotnet-mrz-scanner.png)
+    ![.NET WinForms MRZ Scanner](https://camo.githubusercontent.com/4b17e1e7b3ca4528eb4dd524df1e58f60f7ba397512da3485d08e79c80f733c2/68747470733a2f2f7777772e64796e616d736f66742e636f6d2f636f6465706f6f6c2f696d672f323032322f31302f646f746e65742d6d727a2d7363616e6e65722e706e67)
 
 ## Building NuGet Package from Source Code
 
