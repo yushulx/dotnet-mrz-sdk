@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34408.163
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "command-line", "command-line.csproj", "{609371ED-7969-4147-9C2E-E21BA9000BB6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MrzScannerSDK", "..\..\desktop\MrzScannerSDK.csproj", "{37F0D46D-89B0-4BDA-8320-ACD5AEDDB879}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{609371ED-7969-4147-9C2E-E21BA9000BB6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{609371ED-7969-4147-9C2E-E21BA9000BB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{609371ED-7969-4147-9C2E-E21BA9000BB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{609371ED-7969-4147-9C2E-E21BA9000BB6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{37F0D46D-89B0-4BDA-8320-ACD5AEDDB879}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37F0D46D-89B0-4BDA-8320-ACD5AEDDB879}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37F0D46D-89B0-4BDA-8320-ACD5AEDDB879}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37F0D46D-89B0-4BDA-8320-ACD5AEDDB879}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {EBDE6262-FE88-4B86-A6A4-F480FFDB0BB3}
+	EndGlobalSection
+EndGlobal

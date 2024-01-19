@@ -29,44 +29,30 @@
 
   <ItemGroup>
     <Compile Remove="example\**" />
-    <None Include="LICENSE" Pack="true" PackagePath="" />
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All" />
   </ItemGroup>
 
   <ItemGroup>
-    <None CopyToOutputDirectory="Always" Link="\%(Filename)%(Extension)"
-      Include="lib/win/DynamicPdfx64.dll" Pack="true"
-      PackagePath="runtimes/win-x64/native/DynamicPdfx64.dll" />
-    <None CopyToOutputDirectory="Always" Link="\%(Filename)%(Extension)"
-      Include="lib/win/DynamsoftLabelRecognizerx64.dll" Pack="true"
-      PackagePath="runtimes/win-x64/native/DynamsoftLabelRecognizerx64.dll" />
-    <None CopyToOutputDirectory="Always" Link="\%(Filename)%(Extension)"
-      Include="lib/win/DynamsoftLicenseClientx64.dll" Pack="true"
-      PackagePath="runtimes/win-x64/native/DynamsoftLicenseClientx64.dll" />
-    <None CopyToOutputDirectory="Always" Link="\%(Filename)%(Extension)"
-      Include="lib/win/vcomp140.dll" Pack="true" PackagePath="runtimes/win-x64/native/vcomp140.dll" />
+    <None CopyToOutputDirectory="Always" Link="\%(Filename)%(Extension)" Include="lib/win/DynamicPdfx64.dll" Pack="true" PackagePath="runtimes/win-x64/native/DynamicPdfx64.dll" />
+    <None CopyToOutputDirectory="Always" Link="\%(Filename)%(Extension)" Include="lib/win/DynamsoftLabelRecognizerx64.dll" Pack="true" PackagePath="runtimes/win-x64/native/DynamsoftLabelRecognizerx64.dll" />
+    <None CopyToOutputDirectory="Always" Link="\%(Filename)%(Extension)" Include="lib/win/DynamsoftLicenseClientx64.dll" Pack="true" PackagePath="runtimes/win-x64/native/DynamsoftLicenseClientx64.dll" />
+    <None CopyToOutputDirectory="Always" Link="\%(Filename)%(Extension)" Include="lib/win/vcomp140.dll" Pack="true" PackagePath="runtimes/win-x64/native/vcomp140.dll" />
 
-    <None CopyToOutputDirectory="Always" Link="\%(Filename)%(Extension)"
-      Include="lib/linux/libDynamicPdf.so" Pack="true"
-      PackagePath="runtimes/linux-x64/native/libDynamicPdf.so" />
-    <None CopyToOutputDirectory="Always" Link="\%(Filename)%(Extension)"
-      Include="lib/linux/libDynamsoftLabelRecognizer.so" Pack="true"
-      PackagePath="runtimes/linux-x64/native/libDynamsoftLabelRecognizer.so" />
-    <None CopyToOutputDirectory="Always" Link="\%(Filename)%(Extension)"
-      Include="lib/linux/libDynamsoftLicenseClient.so" Pack="true"
-      PackagePath="runtimes/linux-x64/native/libDynamsoftLicenseClient.so" />
+    <None CopyToOutputDirectory="Always" Link="\%(Filename)%(Extension)" Include="lib/linux/libDynamicPdf.so" Pack="true" PackagePath="runtimes/linux-x64/native/libDynamicPdf.so" />
+    <None CopyToOutputDirectory="Always" Link="\%(Filename)%(Extension)" Include="lib/linux/libDynamsoftLabelRecognizer.so" Pack="true" PackagePath="runtimes/linux-x64/native/libDynamsoftLabelRecognizer.so" />
+    <None CopyToOutputDirectory="Always" Link="\%(Filename)%(Extension)" Include="lib/linux/libDynamsoftLicenseClient.so" Pack="true" PackagePath="runtimes/linux-x64/native/libDynamsoftLicenseClient.so" />
   </ItemGroup>
 
   <ItemGroup>
     <Content Include="MrzScannerSDK.targets" PackagePath="build/MrzScannerSDK.targets" />
-    <None Update="README.md">
-      <Pack>True</Pack>
-      <PackagePath>\</PackagePath>
-    </None>
     <None Update="model/**/*.*">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
   </ItemGroup>
+
+	<ItemGroup>
+		<None Include="../README.md" Pack="true" PackagePath="" />
+	</ItemGroup>
 </Project>

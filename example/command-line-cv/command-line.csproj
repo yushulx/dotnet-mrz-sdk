@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\MrzScannerSDK.csproj" />
+    <ProjectReference Include="..\..\desktop\MrzScannerSDK.csproj" />
     <PackageReference Include="OpenCvSharp4" Version="4.6.0.20220608" />
   </ItemGroup>
   <ItemGroup>

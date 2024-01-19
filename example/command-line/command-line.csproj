@@ -8,6 +8,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\MrzScannerSDK.csproj" />
+    <ProjectReference Include="..\..\desktop\MrzScannerSDK.csproj" />
   </ItemGroup>
 </Project>
