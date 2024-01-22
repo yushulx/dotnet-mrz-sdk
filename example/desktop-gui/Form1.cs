@@ -27,19 +27,18 @@ namespace Test
             scanner = MrzScanner.Create();
             capture = new VideoCapture(0);
             isCapturing = false;
-            scanner.LoadModel();
         }
 
         private void ActivateLicense(string license)
         {
-            int ret = MrzScanner.InitLicense(license); // Get a license key from https://www.dynamsoft.com/customer/license/trialLicense?product=dlr
-            if (ret != 0)
+            try
+            {
+                MrzScanner.InitLicense(license);
+            }
+            catch (Exception ex)
             {
                 toolStripStatusLabel1.Text = "License is invalid.";
-            }
-            else
-            {
-                toolStripStatusLabel1.Text = "License is activated successfully.";
+                return;
             }
         }
 

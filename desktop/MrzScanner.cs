@@ -25,7 +25,6 @@ public class MrzScanner
         }
     }
 
-    public static string VERSION = "1.1.0";
     private IntPtr handler;
     private static string? licenseKey;
 
@@ -236,6 +235,7 @@ public class MrzScanner
     private MrzScanner()
     {
         handler = DLR_CreateInstance();
+        LoadModel();
     }
 
     ~MrzScanner()
@@ -435,7 +435,7 @@ public class MrzScanner
         }
     }
 
-    public static int InitLicense(string license)
+    public static void InitLicense(string license, object? context = null)
     {
         byte[] errorMsg = new byte[512];
         licenseKey = license;
@@ -443,7 +443,10 @@ public class MrzScanner
 #if DEBUG
         Console.WriteLine("InitLicense(): " + Encoding.ASCII.GetString(errorMsg));
 #endif
-        return ret;
+        if (ret != 0)
+        {
+            throw new Exception("InitLicense(): " + Encoding.ASCII.GetString(errorMsg));
+        }
     }
 
     public static string ExtractModelsToDocuments()
@@ -474,7 +477,7 @@ public class MrzScanner
         return targetFolderPath;
     }
 
-    public int LoadModel(string path = "")
+    private int LoadModel(string path = "")
     {
 
         if (handler == IntPtr.Zero) return -1;

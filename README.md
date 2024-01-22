@@ -1,31 +1,27 @@
 # .NET MRZ Scanner SDK
-The .NET MRZ Scanner SDK is a C# wrapper for [Dynamsoft C++ Label Recognizer SDK](https://www.dynamsoft.com/label-recognition/docs/introduction/?ver=latest). It is used to recognize MRZ information from passport, Visa, ID card and travel documents.
+The .NET Machine-readable Zone (MRZ) Scanner SDK is a C# wrapper for [Dynamsoft Label Recognizer](https://www.dynamsoft.com/label-recognition/overview/?utm_content=nav-products), supporting **x64 Windows**, **x64 Linux** and **Android**. It is used to recognize MRZ information from **passport**, **Visa**, **ID card** and **travel documents**.
 
 
 ## License Activation
-Click [here](https://www.dynamsoft.com/customer/license/trialLicense?product=dlr) to get a valid license key.
+Click [here](https://www.dynamsoft.com/customer/license/trialLicense?product=dlr) to get a trial license key.
 
 ## Supported Platforms
 - Windows (x64)
 - Linux (x64)
+- Android
 
-## Download .NET 6 SDK
-* [Windows](https://dotnet.microsoft.com/en-us/download#windowscmd)
-* [Linux](https://dotnet.microsoft.com/en-us/download#linuxubuntu)
-
-## Methods
-- `public static void InitLicense(string license)`
-- `public static MrzScanner Create()`
-- `public Result[]? DetectFile(string filename)`
-- `public Result[]? DetectBuffer(byte[] buffer, int width, int height, int stride, ImagePixelFormat format)`
-- `public static string? GetVersionInfo()`
-- `public int LoadModel()`
+## API
+- `public static void InitLicense(string license)`: Initialize the license. It must be called before creating the MRZ scanner object.
+- `public static MrzScanner Create()`: Create the MRZ scanner object.
+- `public Result[]? DetectFile(string filename)`: Detect MRZ from an image file.
+- `public Result[]? DetectBuffer(byte[] buffer, int width, int height, int stride, ImagePixelFormat format)`: Detect MRZ from a buffer.
+- `public static string? GetVersionInfo()`: Get SDK version number.
 
 ## Usage
 - Set the license key:
     
     ```csharp
-    MrzScanner.InitLicense("DLS2eyJoYW5kc2hha2VDb2RlIjoiMjAwMDAxLTE2NDk4Mjk3OTI2MzUiLCJvcmdhbml6YXRpb25JRCI6IjIwMDAwMSIsInNlc3Npb25QYXNzd29yZCI6IndTcGR6Vm05WDJrcEQ5YUoifQ=="); 
+    MrzScanner.InitLicense("LICENSE-KEY"); 
     ```
 - Initialize the MRZ scanner object:
     
@@ -35,29 +31,17 @@ Click [here](https://www.dynamsoft.com/customer/license/trialLicense?product=dlr
 - Detect MRZ from an image file:
 
     ```csharp
-    Result[]? resultArray = scanner.DetectFile(filename);
+    Result[]? result = scanner.DetectFile(filename);
     ```    
 - Detect MRZ from a buffer:
 
-    
     ```csharp
-    Mat mat = Cv2.ImRead(filename, ImreadModes.Color);
-
-    int length = mat.Cols * mat.Rows * mat.ElemSize();
-    byte[] bytes = new byte[length];
-    Marshal.Copy(mat.Data, bytes, 0, length);
-
-    Result[]? resultArray = scanner.DetectBuffer(bytes, mat.Cols, mat.Rows, (int)mat.Step(), MrzScanner.ImagePixelFormat.IPF_RGB_888);
+    Result[]? result = scanner.DetectBuffer(bytes, width, height, stride, MrzScanner.ImagePixelFormat.IPF_RGB_888);
     ```     
 - Get SDK version number:
 
     ```csharp
     string? version = MrzScanner.GetVersionInfo();
-    ```
-- Load the MRZ detection model. The model has been added to the NuGet package.
-    
-    ```csharp
-    scanner.LoadModel();
     ```
 - Parse the MRZ information:
 
@@ -85,11 +69,9 @@ namespace Test
     {
         static void Main(string[] args)
         {
-            MrzScanner.InitLicense("DLS2eyJoYW5kc2hha2VDb2RlIjoiMjAwMDAxLTE2NDk4Mjk3OTI2MzUiLCJvcmdhbml6YXRpb25JRCI6IjIwMDAwMSIsInNlc3Npb25QYXNzd29yZCI6IndTcGR6Vm05WDJrcEQ5YUoifQ=="); // Get a license key from https://www.dynamsoft.com/customer/license/trialLicense?product=dlr
+            MrzScanner.InitLicense("LICENSE-KEY"); 
             Console.WriteLine("Version: " + MrzScanner.GetVersionInfo());
             MrzScanner scanner = MrzScanner.Create();
-            int ret = scanner.LoadModel();
-            Console.WriteLine("LoadModel: " + ret);
 
             MrzScanner.Result[]? results = scanner.DetectFile("1.png");
             if (results != null)
@@ -135,5 +117,14 @@ namespace Test
 ## Building NuGet Package from Source Code
 
 ```bash
+# build dll for desktop
+cd desktop
 dotnet build --configuration Release
+
+# build dll for android
+cd android
+dotnet build --configuration Release
+
+# build nuget package
+nuget pack .\MrzScannerSDK.nuspec
 ```
