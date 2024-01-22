@@ -114,6 +114,10 @@ namespace Test
     
     ![.NET WinForms MRZ Scanner](https://camo.githubusercontent.com/4b17e1e7b3ca4528eb4dd524df1e58f60f7ba397512da3485d08e79c80f733c2/68747470733a2f2f7777772e64796e616d736f66742e636f6d2f636f6465706f6f6c2f696d672f323032322f31302f646f746e65742d6d727a2d7363616e6e65722e706e67)
 
+- [.NET MAUI for Android](https://github.com/yushulx/dotnet-mrz-sdk/tree/main/example/MauiAndroid)
+    
+    ![.NET MAUI Android MRZ reader](https://private-user-images.githubusercontent.com/2202306/269182574-cb711e52-9e66-4153-804d-8118f67fef64.jpg?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MDU5MDc3NzIsIm5iZiI6MTcwNTkwNzQ3MiwicGF0aCI6Ii8yMjAyMzA2LzI2OTE4MjU3NC1jYjcxMWU1Mi05ZTY2LTQxNTMtODA0ZC04MTE4ZjY3ZmVmNjQuanBnP1gtQW16LUFsZ29yaXRobT1BV1M0LUhNQUMtU0hBMjU2JlgtQW16LUNyZWRlbnRpYWw9QUtJQVZDT0RZTFNBNTNQUUs0WkElMkYyMDI0MDEyMiUyRnVzLWVhc3QtMSUyRnMzJTJGYXdzNF9yZXF1ZXN0JlgtQW16LURhdGU9MjAyNDAxMjJUMDcxMTEyWiZYLUFtei1FeHBpcmVzPTMwMCZYLUFtei1TaWduYXR1cmU9NjA4NzY3MmQ5ZmMzOWJlMTRlM2QxMTcyNTcwNDI5MThkMTIyZmZmNjE3NWYwOTIxMTJjMTljMWQyZGI4NzQ2ZCZYLUFtei1TaWduZWRIZWFkZXJzPWhvc3QmYWN0b3JfaWQ9MCZrZXlfaWQ9MCZyZXBvX2lkPTAifQ.zc_OzYciOUdqRn_LSH3Y992KVvmFcStdpkKfjng1WbE)
+
 ## Building NuGet Package from Source Code
 
 ```bash
@@ -122,7 +126,7 @@ cd desktop
 dotnet build --configuration Release
 
 # build dll for android
-cd android
+cd android/sdk
 dotnet build --configuration Release
 
 # build nuget package
