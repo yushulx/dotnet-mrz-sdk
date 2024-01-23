@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>MrzScannerSDK</id>
-    <version>1.3.4</version>
+    <version>1.3.5</version>
     <title>MRZ Scanner SDK</title>
     <authors>yushulx</authors>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
@@ -12,7 +12,7 @@
     <projectUrl>https://github.com/yushulx/dotnet-mrz-sdk</projectUrl>
     <description>The MRZ Scanner SDK is a .NET wrapper for Dynamsoft Label Recognizer,
       supporting x64 Windows, x64 Linux and Android.</description>
-    <releaseNotes>Added support for Android</releaseNotes>
+    <releaseNotes>Fixed build condition for Windows.</releaseNotes>
     <copyright>$copyright$</copyright>
     <tags>MRZ;mrz-scan;machine-readable-zone;mrz-detection;passport;visa;id-card;travel-document</tags>
   </metadata>
@@ -23,7 +23,7 @@
     <!-- Desktop -->
     <file src="desktop\lib\win\**\*.*" target="runtimes\win-x64\native" />
     <file src="desktop\lib\linux\**\*.*" target="runtimes\linux-x64\native" />
-    <file src="desktop\bin\Release\net6.0\MrzScannerSDK.dll" target="lib\net7.0" />
+    <file src="desktop\bin\Release\net7.0\MrzScannerSDK.dll" target="lib\net7.0" />
     <file src="desktop\MrzScannerSDK.targets" target="build" />
     <file src="desktop\model\**\*.*" target="model" />
 
