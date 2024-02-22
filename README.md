@@ -116,7 +116,7 @@ namespace Test
 
 - [.NET MAUI for Android](https://github.com/yushulx/dotnet-mrz-sdk/tree/main/example/MauiAndroid)
     
-    ![.NET MAUI Android MRZ reader](https://www.dynamsoft.com/codepool/img/2024/02/dotnet-maui-android-mrz-reader.jpg)
+    ![.NET MAUI Android MRZ reader](https://camo.githubusercontent.com/4ab74c30ca6431fa570c874ec5faf4a2a64635d6668d597d6d732e896db4cd14/68747470733a2f2f7777772e64796e616d736f66742e636f6d2f636f6465706f6f6c2f696d672f323032342f30322f646f746e65742d6d6175692d616e64726f69642d6d727a2d7265616465722e6a7067)
 
 ## Building NuGet Package from Source Code
 
