@@ -7,3 +7,4 @@ bin
 Products
 Pods
 .DS_Store
+xcframework
