@@ -9,7 +9,30 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ObjcBindingApiDefinition Include="ApiDefinition.cs" />
-    <ObjcBindingCoreSource Include="StructsAndEnums.cs" />
+    <ObjcBindingApiDefinition Include="CoreApiDefinition.cs" />
+    <ObjcBindingCoreSource Include="CoreStructsAndEnums.cs" />
+    <NativeReference Include="DynamsoftCore.framework">
+      <Kind>Framework</Kind>
+      <Frameworks></Frameworks>
+    </NativeReference>
   </ItemGroup>
+
+  <ItemGroup>
+    <ObjcBindingApiDefinition Include="DlrApiDefinition.cs" />
+    <ObjcBindingCoreSource Include="DlrStructsAndEnums.cs" />
+    <NativeReference Include="DynamsoftLabelRecognizer.framework">
+      <Kind>Framework</Kind>
+      <Frameworks></Frameworks>
+    </NativeReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ObjcBindingApiDefinition Include="RecognizerApiDefinition.cs" />
+    <ObjcBindingCoreSource Include="RecognizerStructsAndEnums.cs" />
+    <NativeReference Include="MRZRecognizer.framework">
+      <Kind>Framework</Kind>
+      <Frameworks></Frameworks>
+    </NativeReference>
+  </ItemGroup>
+
 </Project>
