@@ -8,5 +8,6 @@ target 'MRZScannerObjC' do
   # Pods for MRZScannerObjC
 pod 'DynamsoftCameraEnhancer','3.0.1'
 pod 'DynamsoftLabelRecognizer','2.2.20'
+pod 'DynamsoftCore', '2.0.2'
 
 end

@@ -1,0 +1,6 @@
+framework module DynamsoftLabelRecognizer {
+  umbrella header "DynamsoftLabelRecognizer.h"
+
+  export *
+  module * { export * }
+}

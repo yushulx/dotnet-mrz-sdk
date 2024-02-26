@@ -1,0 +1,26 @@
+PODS:
+  - DynamsoftCameraEnhancer (3.0.1):
+    - DynamsoftCore (>= 2.0.0)
+  - DynamsoftCore (2.0.2)
+  - DynamsoftLabelRecognizer (2.2.20):
+    - DynamsoftCore
+
+DEPENDENCIES:
+  - DynamsoftCameraEnhancer (= 3.0.1)
+  - DynamsoftCore (= 2.0.2)
+  - DynamsoftLabelRecognizer (= 2.2.20)
+
+SPEC REPOS:
+  trunk:
+    - DynamsoftCameraEnhancer
+    - DynamsoftCore
+    - DynamsoftLabelRecognizer
+
+SPEC CHECKSUMS:
+  DynamsoftCameraEnhancer: 3cc53a49363e2a069640447773280e05247472a7
+  DynamsoftCore: 80c01db1e40dd019d50b9c07bff50c73fcb06d03
+  DynamsoftLabelRecognizer: 50365d635771e449904ec091d49e9729cd2f03d9
+
+PODFILE CHECKSUM: 350622b4f0200621f49c4e4c0ebc9e8f69a308aa
+
+COCOAPODS: 1.15.2

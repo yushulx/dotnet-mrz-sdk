@@ -1,0 +1,6 @@
+framework module DynamsoftCore {
+  umbrella header "DynamsoftCore.h"
+
+  export *
+  module * { export * }
+}

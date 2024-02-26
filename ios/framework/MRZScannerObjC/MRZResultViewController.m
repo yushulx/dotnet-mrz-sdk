@@ -36,25 +36,31 @@
 - (void)createData {
     self.mrzDataArray = [NSMutableArray array];
     [self.mrzDataArray addObject:@{@"RowPrefix":@"Document Type",
-                                   @"Content":self.mrzResult.docType == nil ? @"nil":self.mrzResult.docType
+                                   @"Content":(self.mrzResult.docType == nil || self.mrzResult.docType.length == 0) ? @"nil":self.mrzResult.docType
+                                 }];
+    [self.mrzDataArray addObject:@{@"RowPrefix":@"Issuing State",
+                                   @"Content":(self.mrzResult.issuer == nil || self.mrzResult.issuer.length == 0) ? @"nil":self.mrzResult.issuer
                                  }];
     [self.mrzDataArray addObject:@{@"RowPrefix":@"Surname",
-                                   @"Content":self.mrzResult.surname == nil ? @"nil":self.mrzResult.surname
+                                   @"Content":(self.mrzResult.surname == nil || self.mrzResult.surname.length == 0) ? @"nil":self.mrzResult.surname
                                  }];
     [self.mrzDataArray addObject:@{@"RowPrefix":@"Given Name",
-                                   @"Content":self.mrzResult.givenName == nil ? @"nil":self.mrzResult.givenName
+                                   @"Content":(self.mrzResult.givenName == nil || self.mrzResult.givenName.length == 0) ? @"nil":self.mrzResult.givenName
+                                 }];
+    [self.mrzDataArray addObject:@{@"RowPrefix":@"ID",
+                                   @"Content":(self.mrzResult.docId == nil || self.mrzResult.docId.length == 0)? @"nil":self.mrzResult.docId
                                  }];
     [self.mrzDataArray addObject:@{@"RowPrefix":@"Nationality",
-                                   @"Content":self.mrzResult.nationality == nil ? @"nil":self.mrzResult.nationality
+                                   @"Content":(self.mrzResult.nationality == nil || self.mrzResult.nationality.length == 0) ? @"nil":self.mrzResult.nationality
                                  }];
     [self.mrzDataArray addObject:@{@"RowPrefix":@"Date of Birth(YYYY-MM-DD)",
-                                   @"Content":self.mrzResult.dateOfBirth == nil ? @"nil":self.mrzResult.dateOfBirth
+                                   @"Content":(self.mrzResult.dateOfBirth == nil || self.mrzResult.dateOfBirth.length == 0) ? @"nil":self.mrzResult.dateOfBirth
                                  }];
     [self.mrzDataArray addObject:@{@"RowPrefix":@"Gender",
-                                   @"Content":self.mrzResult.gender == nil ? @"nil":self.mrzResult.gender
+                                   @"Content":(self.mrzResult.gender == nil || self.mrzResult.gender.length == 0) ? @"nil":self.mrzResult.gender
                                  }];
     [self.mrzDataArray addObject:@{@"RowPrefix":@"Date of Expiry(YYYY-MM-DD)",
-                                   @"Content":self.mrzResult.dateOfExpiration == nil ? @"nil":self.mrzResult.dateOfExpiration
+                                   @"Content":(self.mrzResult.dateOfExpiration == nil || self.mrzResult.dateOfExpiration.length == 0)? @"nil":self.mrzResult.dateOfExpiration
                                  }];
     [self.mrzDataArray addObject:@{@"RowPrefix":@"IsParsed",
                                    @"Content":self.mrzResult.isParsed?@"YES":@"NO"
@@ -63,7 +69,7 @@
                                    @"Content":self.mrzResult.isVerified?@"YES":@"NO"
                                  }];
     [self.mrzDataArray addObject:@{@"RowPrefix":@"MRZ String",
-                                   @"Content":[NSString stringWithFormat:@"\n%@", self.mrzResult.mrzText == nil ? @"nil":self.mrzResult.mrzText]
+                                   @"Content":[NSString stringWithFormat:@"\n%@", (self.mrzResult.mrzText == nil || self.mrzResult.mrzText.length == 0) ? @"nil":self.mrzResult.mrzText]
                                  }];
 }
 

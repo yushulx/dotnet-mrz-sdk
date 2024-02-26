@@ -22,6 +22,7 @@
 		0AEA02FE28D064120076A1BA /* UIDevice+Orientation.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AEA02FD28D064120076A1BA /* UIDevice+Orientation.m */; };
 		0AEA031028D161500076A1BA /* MRZResultTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AEA030F28D161500076A1BA /* MRZResultTableViewCell.m */; };
 		0AEA031428D16CCE0076A1BA /* DynamsoftToolsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AEA031228D16CCE0076A1BA /* DynamsoftToolsManager.m */; };
+		366FA61DE37DD2AB59C0C20D /* Pods_MRZScannerObjC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA386C53517221B83B6BE309 /* Pods_MRZScannerObjC.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,6 +84,9 @@
 		0AEA030F28D161500076A1BA /* MRZResultTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MRZResultTableViewCell.m; sourceTree = "<group>"; };
 		0AEA031228D16CCE0076A1BA /* DynamsoftToolsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DynamsoftToolsManager.m; sourceTree = "<group>"; };
 		0AEA031328D16CCE0076A1BA /* DynamsoftToolsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DynamsoftToolsManager.h; sourceTree = "<group>"; };
+		958D48D14063AC6A913F9F39 /* Pods-MRZScannerObjC.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MRZScannerObjC.debug.xcconfig"; path = "Target Support Files/Pods-MRZScannerObjC/Pods-MRZScannerObjC.debug.xcconfig"; sourceTree = "<group>"; };
+		96FAF7994C6090EB5E5FFFE6 /* Pods-MRZScannerObjC.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MRZScannerObjC.release.xcconfig"; path = "Target Support Files/Pods-MRZScannerObjC/Pods-MRZScannerObjC.release.xcconfig"; sourceTree = "<group>"; };
+		FA386C53517221B83B6BE309 /* Pods_MRZScannerObjC.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MRZScannerObjC.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +95,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0A3367A828DD9B2200AF4C34 /* MRZRecognizer.framework in Frameworks */,
+				366FA61DE37DD2AB59C0C20D /* Pods_MRZScannerObjC.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,6 +117,7 @@
 				0AEA02D228D05C930076A1BA /* MRZScannerObjC */,
 				0AEA02D128D05C930076A1BA /* Products */,
 				0AEA02FF28D074B10076A1BA /* Frameworks */,
+				5D1B1F131D6E9D36F77A729F /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -180,6 +186,7 @@
 			isa = PBXGroup;
 			children = (
 				0AA035D828DC388200D61698 /* MRZRecognizer.framework */,
+				FA386C53517221B83B6BE309 /* Pods_MRZScannerObjC.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -202,6 +209,16 @@
 			path = Manager;
 			sourceTree = "<group>";
 		};
+		5D1B1F131D6E9D36F77A729F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				958D48D14063AC6A913F9F39 /* Pods-MRZScannerObjC.debug.xcconfig */,
+				96FAF7994C6090EB5E5FFFE6 /* Pods-MRZScannerObjC.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -209,10 +226,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0AEA02E928D05C950076A1BA /* Build configuration list for PBXNativeTarget "MRZScannerObjC" */;
 			buildPhases = (
+				1DBF9B2789ECC1BEBF1BC522 /* [CP] Check Pods Manifest.lock */,
 				0AEA02CC28D05C930076A1BA /* Sources */,
 				0AEA02CD28D05C930076A1BA /* Frameworks */,
 				0AEA02CE28D05C930076A1BA /* Resources */,
 				0AEA030C28D074B20076A1BA /* Embed Frameworks */,
+				B5CC7BC4FEB9395A43D94E8E /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -283,6 +302,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1DBF9B2789ECC1BEBF1BC522 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MRZScannerObjC-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B5CC7BC4FEB9395A43D94E8E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MRZScannerObjC/Pods-MRZScannerObjC-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MRZScannerObjC/Pods-MRZScannerObjC-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MRZScannerObjC/Pods-MRZScannerObjC-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		0AEA02CC28D05C930076A1BA /* Sources */ = {
@@ -444,6 +505,7 @@
 		};
 		0AEA02EA28D05C950076A1BA /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 958D48D14063AC6A913F9F39 /* Pods-MRZScannerObjC.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -481,6 +543,7 @@
 		};
 		0AEA02EB28D05C950076A1BA /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 96FAF7994C6090EB5E5FFFE6 /* Pods-MRZScannerObjC.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
