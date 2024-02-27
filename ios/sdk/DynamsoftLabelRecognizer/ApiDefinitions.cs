@@ -3,9 +3,9 @@ using ObjCRuntime;
 using UIKit;
 using Foundation;
 using CoreGraphics;
-using DynamsoftCore;
+using Com.Dynamsoft.Core;
 
-namespace DynamsoftLabelRecognizer
+namespace Com.Dynamsoft.Dlr
 {
 
 	// @interface iDLRReferenceRegion : NSObject
@@ -13,8 +13,8 @@ namespace DynamsoftLabelRecognizer
 	interface iDLRReferenceRegion
 	{
 		// @property (assign, nonatomic) EnumLocalizationSourceType localizationSourceType;
-		//[Export("localizationSourceType", ArgumentSemantic.Assign)]
-		//EnumLocalizationSourceType LocalizationSourceType { get; set; }
+		[Export("localizationSourceType", ArgumentSemantic.Assign)]
+		EnumLocalizationSourceType LocalizationSourceType { get; set; }
 
 		// @property (nonatomic) int * _Nullable location;
 		[NullAllowed, Export("location", ArgumentSemantic.Assign)]

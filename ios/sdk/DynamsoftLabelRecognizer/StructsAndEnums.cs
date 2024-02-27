@@ -1,7 +1,7 @@
 using System;
 using ObjCRuntime;
 
-namespace DynamsoftLabelRecognizer
+namespace Com.Dynamsoft.Dlr
 {
 	
 	[Native]

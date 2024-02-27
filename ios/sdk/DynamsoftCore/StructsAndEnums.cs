@@ -1,7 +1,7 @@
 using System;
 using ObjCRuntime;
 
-namespace DynamsoftCore
+namespace Com.Dynamsoft.Core
 {
 	[Native]
 	public enum EnumDMErrorCode : long

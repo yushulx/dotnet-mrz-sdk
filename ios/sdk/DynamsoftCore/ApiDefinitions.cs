@@ -4,7 +4,7 @@ using UIKit;
 using Foundation;
 using CoreGraphics;
 
-namespace DynamsoftCore
+namespace Com.Dynamsoft.Core
 {
 
 	// @interface iQuadrilateral : NSObject

@@ -3,6 +3,7 @@ using ObjCRuntime;
 using UIKit;
 using Foundation;
 using CoreGraphics;
+using Com.Dynamsoft.Dlr;
 
 namespace MRZRecognizer
 {
@@ -60,15 +61,7 @@ namespace MRZRecognizer
 	}
 
 	// @protocol MRZResultListener <NSObject>
-	/*
-  Check whether adding [Model] to this declaration is appropriate.
-  [Model] is used to generate a C# class that implements this protocol,
-  and might be useful for protocols that consumers are supposed to implement,
-  since consumers can subclass the generated class instead of implementing
-  the generated interface. If consumers are not supposed to implement this
-  protocol, then [Model] is redundant and will generate code that will never
-  be used.
-*/[Protocol]
+	[Protocol]
 	[BaseType (typeof(NSObject))]
 	interface MRZResultListener
 	{
@@ -79,6 +72,7 @@ namespace MRZRecognizer
 	}
 
 	// @interface DynamsoftMRZRecognizer
+	[BaseType (typeof(NSObject))]
 	interface DynamsoftMRZRecognizer
 	{
 		// -(instancetype _Nonnull)initWith:(EnumMRTDDocumentType)type;
@@ -111,14 +105,14 @@ namespace MRZRecognizer
 
 		// -(NSArray * _Nonnull)recognizeMrzFile:(NSString * _Nonnull)fileName error:(NSError * _Nullable * _Nullable)error;
 		[Export ("recognizeMrzFile:error:")]
-		NSObject[] RecognizeMrzFile (string fileName, [NullAllowed] out NSError error);
+        iDLRResult[] RecognizeMrzFile (string fileName, [NullAllowed] out NSError error);
 
 		// -(NSArray * _Nonnull)recognizeMrzBuffer:(id)imageData error:(NSError * _Nullable * _Nullable)error;
 		[Export ("recognizeMrzBuffer:error:")]
-		NSObject[] RecognizeMrzBuffer (NSObject imageData, [NullAllowed] out NSError error);
+        iDLRResult[] RecognizeMrzBuffer (NSObject imageData, [NullAllowed] out NSError error);
 
 		// -(NSArray * _Nonnull)recognizeMrzImage:(id)image error:(NSError * _Nullable * _Nullable)error;
 		[Export ("recognizeMrzImage:error:")]
-		NSObject[] RecognizeMrzImage (NSObject image, [NullAllowed] out NSError error);
+        iDLRResult[] RecognizeMrzImage (NSObject image, [NullAllowed] out NSError error);
 	}
 }
