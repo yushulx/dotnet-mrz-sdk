@@ -1,4 +1,8 @@
 using System;
+using ObjCRuntime;
+using UIKit;
+using Foundation;
+using CoreGraphics;
 
 namespace MRZRecognizer
 {
@@ -107,17 +111,14 @@ namespace MRZRecognizer
 
 		// -(NSArray * _Nonnull)recognizeMrzFile:(NSString * _Nonnull)fileName error:(NSError * _Nullable * _Nullable)error;
 		[Export ("recognizeMrzFile:error:")]
-		[Verify (StronglyTypedNSArray)]
 		NSObject[] RecognizeMrzFile (string fileName, [NullAllowed] out NSError error);
 
 		// -(NSArray * _Nonnull)recognizeMrzBuffer:(id)imageData error:(NSError * _Nullable * _Nullable)error;
 		[Export ("recognizeMrzBuffer:error:")]
-		[Verify (StronglyTypedNSArray)]
 		NSObject[] RecognizeMrzBuffer (NSObject imageData, [NullAllowed] out NSError error);
 
 		// -(NSArray * _Nonnull)recognizeMrzImage:(id)image error:(NSError * _Nullable * _Nullable)error;
 		[Export ("recognizeMrzImage:error:")]
-		[Verify (StronglyTypedNSArray)]
 		NSObject[] RecognizeMrzImage (NSObject image, [NullAllowed] out NSError error);
 	}
 }

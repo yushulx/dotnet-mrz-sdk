@@ -1,4 +1,8 @@
 using System;
+using ObjCRuntime;
+using UIKit;
+using Foundation;
+using CoreGraphics;
 
 namespace DynamsoftCore
 {
@@ -9,7 +13,6 @@ namespace DynamsoftCore
 	{
 		// @property (nonatomic) NSArray * _Nonnull points;
 		[Export ("points", ArgumentSemantic.Assign)]
-		[Verify (StronglyTypedNSArray)]
 		NSObject[] Points { get; set; }
 
 		// -(BOOL)isPointInQuadrilateral:(CGPoint)point __attribute__((swift_name("isPointInQuadrilateral(_:)")));
@@ -18,7 +21,6 @@ namespace DynamsoftCore
 
 		// -(CGRect)getBoundingRect;
 		[Export ("getBoundingRect")]
-		[Verify (MethodToProperty)]
 		CGRect BoundingRect { get; }
 	}
 
@@ -159,7 +161,6 @@ namespace DynamsoftCore
 		// @required -(iImageData * _Nullable)getImage;
 		[Abstract]
 		[NullAllowed, Export ("getImage")]
-		[Verify (MethodToProperty)]
 		iImageData Image { get; }
 	}
 }
