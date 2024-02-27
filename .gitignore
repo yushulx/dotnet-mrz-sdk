@@ -4,3 +4,7 @@ bin
 .vscode
 .vs
 *.nupkg
+Products
+Pods
+.DS_Store
+xcframework

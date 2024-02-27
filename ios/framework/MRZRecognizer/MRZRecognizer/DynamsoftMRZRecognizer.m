@@ -124,6 +124,19 @@
     return [self getMRZResultWith:[self recognizeFileInMemory:fileBytes error:error]];
 }
 
+// Raw methods
+- (NSArray<iDLRResult *> *)recognizeMrzFile:(NSString *)fileName error:(NSError * _Nullable __autoreleasing *)error {
+    return [self recognizeFile:fileName error:error];
+}
+
+- (NSArray<iDLRResult *> *)recognizeMrzBuffer:(iImageData *)imageData error:(NSError * _Nullable __autoreleasing *)error {
+    return [self recognizeBuffer:imageData error:error];
+}
+
+- (NSArray<iDLRResult *> *)recognizeMrzImage:(UIImage *)image error:(NSError * _Nullable __autoreleasing *)error {
+    return [self recognizeImage:image error:error];
+}
+
 // MARK: - General methods
 - (nullable iMRZResult *)getMRZResultWith:(nullable NSArray<iDLRResult *> *)results {
     NSMutableArray<NSString *> *dlrLineTextResults = [NSMutableArray array];

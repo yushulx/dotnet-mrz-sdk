@@ -360,6 +360,8 @@
 					"$(inherited)",
 					../Pods/DynamsoftLabelRecognizer,
 					../Pods/DynamsoftCore,
+					../../../Swift/MRZScannerSwift/Pods/DynamsoftCore,
+					../../../Swift/MRZScannerSwift/Pods/DynamsoftLabelRecognizer,
 				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
@@ -402,6 +404,8 @@
 					"$(inherited)",
 					../Pods/DynamsoftLabelRecognizer,
 					../Pods/DynamsoftCore,
+					../../../Swift/MRZScannerSwift/Pods/DynamsoftCore,
+					../../../Swift/MRZScannerSwift/Pods/DynamsoftLabelRecognizer,
 				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";

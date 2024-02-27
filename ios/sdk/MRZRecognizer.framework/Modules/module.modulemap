@@ -1,0 +1,6 @@
+framework module MRZRecognizer {
+  umbrella header "MRZRecognizer.h"
+  export *
+
+  module * { export * }
+}
