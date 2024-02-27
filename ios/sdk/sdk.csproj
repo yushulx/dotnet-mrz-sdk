@@ -3,14 +3,14 @@
     <TargetFramework>net7.0-ios</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>true</ImplicitUsings>
-	<AssemblyName>MrzScannerSDK</AssemblyName>
+    <AssemblyName>MrzScannerSDK</AssemblyName>
     <IsBindingProject>true</IsBindingProject>
-	<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>
-    <ObjcBindingApiDefinition Include="CoreApiDefinition.cs" />
-    <ObjcBindingCoreSource Include="CoreStructsAndEnums.cs" />
+    <ObjcBindingApiDefinition Include="DynamsoftCore/ApiDefinitions.cs" />
+    <ObjcBindingCoreSource Include="DynamsoftCore/StructsAndEnums.cs" />
     <NativeReference Include="DynamsoftCore.framework">
       <Kind>Framework</Kind>
       <Frameworks></Frameworks>
@@ -18,8 +18,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ObjcBindingApiDefinition Include="DlrApiDefinition.cs" />
-    <ObjcBindingCoreSource Include="DlrStructsAndEnums.cs" />
+    <ObjcBindingApiDefinition Include="DynamsoftLabelRecognizer/ApiDefinitions.cs" />
+    <ObjcBindingCoreSource Include="DynamsoftLabelRecognizer/StructsAndEnums.cs" />
     <NativeReference Include="DynamsoftLabelRecognizer.framework">
       <Kind>Framework</Kind>
       <Frameworks></Frameworks>
@@ -27,8 +27,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ObjcBindingApiDefinition Include="RecognizerApiDefinition.cs" />
-    <ObjcBindingCoreSource Include="RecognizerStructsAndEnums.cs" />
+    <ObjcBindingApiDefinition Include="MRZRecognizer/ApiDefinitions.cs" />
+    <ObjcBindingCoreSource Include="MRZRecognizer/StructsAndEnums.cs" />
     <NativeReference Include="MRZRecognizer.framework">
       <Kind>Framework</Kind>
       <Frameworks></Frameworks>

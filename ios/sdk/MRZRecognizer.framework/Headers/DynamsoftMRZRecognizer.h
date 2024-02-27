@@ -77,6 +77,12 @@ NS_SWIFT_NAME(recognizeMRZFromImage(_:));
                                             error:(NSError * _Nullable * _Nullable)error
 NS_SWIFT_NAME(recognizeMRZInMemory(_:));
 
+- (NSArray<iDLRResult *> *)recognizeMrzFile:(NSString *)fileName error:(NSError * _Nullable __autoreleasing *)error;
+
+- (NSArray<iDLRResult *> *)recognizeMrzBuffer:(iImageData *)imageData error:(NSError * _Nullable __autoreleasing *)error;
+
+- (NSArray<iDLRResult *> *)recognizeMrzImage:(UIImage *)image error:(NSError * _Nullable __autoreleasing *)error;
+
 @end
 
 NS_ASSUME_NONNULL_END
