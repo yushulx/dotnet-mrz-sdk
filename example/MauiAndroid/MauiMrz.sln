@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34408.163
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MauiAndroidMrz", "MauiAndroidMrz.csproj", "{5A8EB329-1651-4804-B0E9-041428AF3C9C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MauiMrz", "MauiMrz.csproj", "{5A8EB329-1651-4804-B0E9-041428AF3C9C}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MrzScannerSDK", "..\..\android\sdk\MrzScannerSDK.csproj", "{9AF9A24F-F10E-484E-8CAE-858F0327AA5A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sdk", "..\..\ios\sdk\sdk.csproj", "{256CB9C1-1E9E-4FDE-9584-879A36705FDA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,6 +25,10 @@ Global
 		{9AF9A24F-F10E-484E-8CAE-858F0327AA5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9AF9A24F-F10E-484E-8CAE-858F0327AA5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9AF9A24F-F10E-484E-8CAE-858F0327AA5A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{256CB9C1-1E9E-4FDE-9584-879A36705FDA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{256CB9C1-1E9E-4FDE-9584-879A36705FDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{256CB9C1-1E9E-4FDE-9584-879A36705FDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{256CB9C1-1E9E-4FDE-9584-879A36705FDA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -3,7 +3,7 @@ using ObjCRuntime;
 using UIKit;
 using Foundation;
 using CoreGraphics;
-using Com.Dynamsoft.Core;
+using DynamsoftCore;
 
 namespace Com.Dynamsoft.Dlr
 {

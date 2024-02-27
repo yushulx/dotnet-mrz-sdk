@@ -4,7 +4,7 @@ using UIKit;
 using Foundation;
 using CoreGraphics;
 
-namespace Com.Dynamsoft.Core
+namespace DynamsoftCore
 {
 
 	// @interface iQuadrilateral : NSObject
@@ -127,22 +127,14 @@ namespace Com.Dynamsoft.Core
 	}
 
 	// @protocol LicenseVerificationListener <NSObject>
-	/*
-	Check whether adding [Model] to this declaration is appropriate.
-	[Model] is used to generate a C# class that implements this protocol,
-	and might be useful for protocols that consumers are supposed to implement,
-	since consumers can subclass the generated class instead of implementing
-	the generated interface. If consumers are not supposed to implement this
-	protocol, then [Model] is redundant and will generate code that will never
-	be used.
-	*/[Protocol]
+	[Protocol, Model]
 	[BaseType (typeof(NSObject))]
 	interface LicenseVerificationListener
 	{
 		// @required -(void)licenseVerificationCallback:(_Bool)isSuccess error:(NSError * _Nullable)error;
 		[Abstract]
 		[Export ("licenseVerificationCallback:error:")]
-		void Error (bool isSuccess, [NullAllowed] NSError error);
+		void LicenseVerificationCallback (bool isSuccess, [NullAllowed] NSError error);
 	}
 
 	// @protocol ImageSource <NSObject>

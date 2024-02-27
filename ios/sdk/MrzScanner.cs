@@ -1,4 +1,4 @@
-﻿using Com.Dynamsoft.Core;
+﻿using DynamsoftCore;
 using Com.Dynamsoft.Dlr;
 using MRZRecognizer;
 using System.Runtime.InteropServices;
@@ -63,9 +63,9 @@ namespace Dynamsoft
             IPF_BGR_888
         }
 
-        public class Listener : LicenseVerificationListener
+        public class LicenseVerification : LicenseVerificationListener
         {
-            public void licenseVerificationCallback(bool isSuccess, NSError ex)
+            public void LicenseVerificationCallback(bool isSuccess, NSError ex)
             {
                 if (!isSuccess)
                 {
@@ -76,9 +76,15 @@ namespace Dynamsoft
 
         public static void InitLicense(string license, object? context = null)
         {
-            if (context == null) { return; }
-
-            DynamsoftLicenseManager.InitLicense(license, new Listener());
+            try
+            {
+                DynamsoftLicenseManager.InitLicense(license, new LicenseVerification());
+            }
+            catch (Exception e)
+            {
+                System.Console.WriteLine(e.ToString());
+            }
+            
         }
 
         private MrzScanner()

@@ -1,4 +1,4 @@
-﻿#if ANDROID
+﻿#if ANDROID || IOS
 using Com.Dynamsoft.Dlr;
 using Dynamsoft;
 #endif
@@ -7,8 +7,7 @@ namespace MauiAndroidMrz;
 
 public partial class ImagePage : ContentPage
 {
-#if ANDROID
-    MRZRecognizer recognizer;
+#if ANDROID || IOS
     private MrzScanner mrzScanner;
 #endif
 
@@ -18,7 +17,7 @@ public partial class ImagePage : ContentPage
 
         Image.Source = imagepath;
 
-#if ANDROID
+#if ANDROID || IOS
         mrzScanner = MrzScanner.Create();
 
         MrzScanner.Result[] results = mrzScanner.DetectFile(imagepath);
