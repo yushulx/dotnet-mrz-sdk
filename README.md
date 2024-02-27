@@ -1,5 +1,5 @@
 # .NET MRZ Scanner SDK
-The .NET Machine-readable Zone (MRZ) Scanner SDK is a C# wrapper for [Dynamsoft Label Recognizer](https://www.dynamsoft.com/label-recognition/overview/?utm_content=nav-products), supporting **x64 Windows**, **x64 Linux** and **Android**. It is used to recognize MRZ information from **passport**, **Visa**, **ID card** and **travel documents**.
+The .NET Machine-readable Zone (MRZ) Scanner SDK is a C# wrapper for [Dynamsoft Label Recognizer](https://www.dynamsoft.com/label-recognition/overview/?utm_content=nav-products), supporting **x64 Windows**, **x64 Linux**, **Android** and **iOS**. It is used to recognize MRZ information from **passport**, **Visa**, **ID card** and **travel documents**.
 
 
 ## License Activation
@@ -9,6 +9,7 @@ Click [here](https://www.dynamsoft.com/customer/license/trialLicense?product=dlr
 - Windows (x64)
 - Linux (x64)
 - Android
+- iOS
 
 ## API
 - `public static void InitLicense(string license)`: Initialize the license. It must be called before creating the MRZ scanner object.
@@ -114,9 +115,9 @@ namespace Test
     
     ![.NET WinForms MRZ Scanner](https://camo.githubusercontent.com/4b17e1e7b3ca4528eb4dd524df1e58f60f7ba397512da3485d08e79c80f733c2/68747470733a2f2f7777772e64796e616d736f66742e636f6d2f636f6465706f6f6c2f696d672f323032322f31302f646f746e65742d6d727a2d7363616e6e65722e706e67)
 
-- [.NET MAUI for Android](https://github.com/yushulx/dotnet-mrz-sdk/tree/main/example/MauiAndroid)
+- [.NET MAUI for Android and iOS](https://github.com/yushulx/dotnet-mrz-sdk/tree/main/example/MauiAndroid)
     
-    ![.NET MAUI Android MRZ reader](https://camo.githubusercontent.com/4ab74c30ca6431fa570c874ec5faf4a2a64635d6668d597d6d732e896db4cd14/68747470733a2f2f7777772e64796e616d736f66742e636f6d2f636f6465706f6f6c2f696d672f323032342f30322f646f746e65742d6d6175692d616e64726f69642d6d727a2d7265616465722e6a7067)
+    ![.NET MAUI MRZ reader](https://camo.githubusercontent.com/4ab74c30ca6431fa570c874ec5faf4a2a64635d6668d597d6d732e896db4cd14/68747470733a2f2f7777772e64796e616d736f66742e636f6d2f636f6465706f6f6c2f696d672f323032342f30322f646f746e65742d6d6175692d616e64726f69642d6d727a2d7265616465722e6a7067)
 
 ## Building NuGet Package from Source Code
 
@@ -127,6 +128,10 @@ dotnet build --configuration Release
 
 # build dll for android
 cd android/sdk
+dotnet build --configuration Release
+
+# build dll for ios
+cd ios/sdk
 dotnet build --configuration Release
 
 # build nuget package
