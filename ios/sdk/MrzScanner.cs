@@ -65,26 +65,18 @@ namespace Dynamsoft
 
         public class LicenseVerification : LicenseVerificationListener
         {
-            public void LicenseVerificationCallback(bool isSuccess, NSError ex)
+            public override void LicenseVerificationCallback(bool isSuccess, NSError error)
             {
                 if (!isSuccess)
                 {
-                    System.Console.WriteLine(ex.UserInfo);
+                    System.Console.WriteLine(error.UserInfo);
                 }
             }
         }
 
         public static void InitLicense(string license, object? context = null)
         {
-            try
-            {
-                DynamsoftLicenseManager.InitLicense(license, new LicenseVerification());
-            }
-            catch (Exception e)
-            {
-                System.Console.WriteLine(e.ToString());
-            }
-            
+            DynamsoftLicenseManager.InitLicense(license, new LicenseVerification());
         }
 
         private MrzScanner()
