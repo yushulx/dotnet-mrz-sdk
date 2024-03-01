@@ -117,9 +117,7 @@ namespace Dynamsoft
         {
             if (recognizer == null) return null;
 
-            IntPtr data = Marshal.AllocHGlobal(buffer.Length);
-            Marshal.Copy(buffer, 0, data, buffer.Length);
-            NSData converted = NSData.FromBytes(data, (nuint)buffer.Length);
+            NSData converted = NSData.FromArray(buffer);
 
             iImageData imageData = new iImageData()
             {
@@ -131,7 +129,6 @@ namespace Dynamsoft
             };
             NSError error;
             iDLRResult[]? mrzResult = recognizer.RecognizeMrzBuffer(imageData, out error);
-            Marshal.Release(data);
 
             return GetResults(mrzResult);
         }
