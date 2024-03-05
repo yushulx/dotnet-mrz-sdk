@@ -31,7 +31,7 @@
     <file src="android\sdk\bin\Release\net7.0-android\**\*.*" target="lib\net7.0-android33.0" />
 
     <!-- iOS -->
-    <file src="ios\sdk\bin\Release\net7.0-ios\*.dll" target="lib\net7.0-ios16.1" />
+    <file src="ios\sdk\bin\Release\net7.0-ios\MrzScannerSDK.dll" target="lib\net7.0-ios16.1" />
     <file src="ios\sdk\bin\Release\net7.0-ios\MrzScannerSDK.resources\**\*.*"
       target="lib\net7.0-ios16.1\MrzScannerSDK.resources" />
 
