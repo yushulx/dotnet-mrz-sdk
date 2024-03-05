@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>MrzScannerSDK</id>
-    <version>2.0.0</version>
+    <version>2.0.1</version>
     <title>MRZ Scanner SDK</title>
     <authors>yushulx</authors>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
@@ -12,7 +12,7 @@
     <projectUrl>https://github.com/yushulx/dotnet-mrz-sdk</projectUrl>
     <description>The MRZ Scanner SDK is a .NET wrapper for Dynamsoft Label Recognizer,
       supporting x64 Windows, x64 Linux, Android and iOS.</description>
-    <releaseNotes>Added support for iOS.</releaseNotes>
+    <releaseNotes>Fixed assembly missing issue</releaseNotes>
     <copyright>$copyright$</copyright>
     <tags>MRZ;mrz-scan;machine-readable-zone;mrz-detection;passport;visa;id-card;travel-document</tags>
   </metadata>
@@ -32,7 +32,7 @@
 
     <!-- iOS -->
     <file src="ios\sdk\bin\Release\net7.0-ios\MrzScannerSDK.dll" target="lib\net7.0-ios16.1" />
-    <file src="ios\sdk\bin\Release\net7.0-ios\MrzScannerSDK.resources\**\*.*"
+    <file src="ios\sdk\bin\Release\net7.0-ios\MrzScannerSDK.resources\"
       target="lib\net7.0-ios16.1\MrzScannerSDK.resources" />
 
   </files>
