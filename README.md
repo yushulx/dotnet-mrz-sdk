@@ -3,7 +3,7 @@ The .NET Machine-readable Zone (MRZ) Scanner SDK is a C# wrapper for [Dynamsoft 
 
 
 ## License Activation
-Click [here](https://www.dynamsoft.com/customer/license/trialLicense?product=dlr) to get a trial license key.
+Click [here](https://www.dynamsoft.com/customer/license/trialLicense/?product=dcv&package=cross-platform) to get a trial license key.
 
 ## Supported Platforms
 - Windows (x64)
